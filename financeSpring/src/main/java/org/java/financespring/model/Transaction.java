@@ -59,15 +59,15 @@ public class Transaction {
     @JoinColumn(name = "budget_id")
     private Budget budget;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", length = 100, nullable = false)
-    @NotNull(message = "Status should not be null")
-    private TransactionStatus status;
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "status", length = 100, nullable = false)
+//    @NotNull(message = "Status should not be null")
+//    private TransactionStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    @NotNull(message = "User should not be null")
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id", nullable = false)
+//    @NotNull(message = "User should not be null")
+//    private User user;
 
     @Column(name = "created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
@@ -75,9 +75,9 @@ public class Transaction {
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_method_id")
-    private PaymentMethod paymentMethod;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "payment_method_id")
+//    private PaymentMethod paymentMethod;
 
     // Automatically set createdDate and lastUpdated
     @PrePersist
