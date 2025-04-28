@@ -36,13 +36,13 @@ public class Transaction {
     @NotNull(message = "Transaction date should not be null")
     private LocalDate transactionDate;
 
+    @Transient
+    private String faTransactionDate;
+
     @Column(name = "transaction_time", nullable = false)
     @PastOrPresent(message = "Invalid Transaction Time")
     @NotNull(message = "Transaction time should not be null")
     private LocalTime transactionTime;
-
-    @Transient
-    private String faTransactionDate;
 
     @Column(name = "transaction_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
@@ -54,8 +54,10 @@ public class Transaction {
     @NotNull(message = "Account should not be null")
     private TransactionType transactionType;
 
-    @Column(name = "transaction_description", length = 500)
-    @Size(max = 500, message = "Description can be up to 500 characters")
+    @Column(name = "transaction_description", columnDefinition = "NVARCHAR2(200)")
+    @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
+    @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
+//    @NotBlank(message = "Should Not Be Null")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -71,7 +73,7 @@ public class Transaction {
     @JoinColumn(name = "status_id", nullable = false)
     private TransactionStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -88,7 +90,6 @@ public class Transaction {
     @PrePersist
     protected void onCreate() {
         createdDate = LocalDateTime.now();
-        lastUpdated = createdDate;
     }
 
     @PreUpdate
