@@ -52,7 +52,7 @@ public class Transaction {
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "transactionType_id", nullable = false)
     @NotNull(message = "Account should not be null")
-    private TransactionType transactionType;
+    private TransactionType type;
 
     @Column(name = "transaction_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
