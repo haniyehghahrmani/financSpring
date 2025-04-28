@@ -1,7 +1,6 @@
 package org.java.financespring.model;
 
 import com.github.mfathi91.time.PersianDate;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
