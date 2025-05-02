@@ -105,4 +105,3 @@ public class Transaction {
         this.transactionDate = LocalDate.from(PersianDate.parse(faTransactionDate).toGregorian().atStartOfDay());
     }
 }
-
