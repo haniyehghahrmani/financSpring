@@ -43,24 +43,24 @@ public class Account {
     @Column(name = "account_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Balance should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Balance must be greater than zero")
-    private BigDecimal Balance;
+    private BigDecimal balance;
 
     @Column(name = "account_currency", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Currency")
     @Size(min = 3, max = 200, message = "Currency must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
-    private String Currency;
+    private String currency;
 
     @Column(name = "account_created_date", nullable = false, updatable = false)
-    private LocalDate CreatedDate;
+    private LocalDate createdDate;
 
     @Column(name = "account_last_updated")
-    private LocalDate LastUpdated;
+    private LocalDate lastUpdated;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "accountStatus_id", nullable = false)
     @NotNull(message = "Account status should not be null")
-    private AccountStatus Status;
+    private AccountStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     @JoinColumn(name = "user_id", nullable = false)
@@ -69,7 +69,7 @@ public class Account {
     @Column(name = "account_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
-//    @NotBlank(message = "Should Not Be Null")
+    @NotBlank(message = "Should Not Be Null")
     private String description;
 
     @Column(name = "account_opening_date", nullable = false)
@@ -83,19 +83,19 @@ public class Account {
     @Column(name = "account_interest_rate", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Interest rate should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Interest rate must be greater than zero")
-    private BigDecimal InterestRate;
+    private BigDecimal interestRate;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "account")
     private List<Transaction> transactions;
 
     @PrePersist
     protected void onCreate() {
-        CreatedDate = LocalDate.now();
+        createdDate = LocalDate.now();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        LastUpdated = LocalDate.now();
+        lastUpdated = LocalDate.now();
     }
 
     public String getFaOpeningDate() {

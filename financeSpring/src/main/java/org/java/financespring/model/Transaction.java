@@ -57,7 +57,7 @@ public class Transaction {
     @Column(name = "transaction_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
-//    @NotBlank(message = "Should Not Be Null")
+    @NotBlank(message = "Should Not Be Null")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -86,7 +86,6 @@ public class Transaction {
     @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Payment> payments;
 
-    // Automatically set createdDate and lastUpdated
     @PrePersist
     protected void onCreate() {
         createdDate = LocalDateTime.now();
