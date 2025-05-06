@@ -1,4 +1,120 @@
 package org.java.financespring.model;
 
+import com.github.mfathi91.time.PersianDate;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+
+@Entity(name = "PayrollEntity")
+@Table(name = "PayrollTbl")
 public class Payroll {
+
+    @Id
+    @SequenceGenerator(name = "payrollSeq", sequenceName = "payroll_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payrollSeq")
+    @Column(name = "payroll_id")
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id", nullable = false)
+    @NotNull(message = "Employee must not be null")
+    private Employee employee;
+
+    //تاریخ شروع و پایان دوره پرداخت حقوق
+    @Column(name = "pay_period_start", nullable = false)
+    @NotNull(message = "Start date must not be null")
+    private LocalDate payPeriodStart;
+
+    @Transient
+    private String faPayPeriodStart;
+
+    @Column(name = "pay_period_end", nullable = false)
+    @NotNull(message = "End date must not be null")
+    private LocalDate payPeriodEnd;
+
+    @Transient
+    private String faPayPeriodEnd;
+
+    //حقوق پایه
+    @Column(name = "base_salary", precision = 15, scale = 2, nullable = false)
+    @DecimalMin(value = "0.0", inclusive = true, message = "Base salary must be non-negative")
+    private BigDecimal baseSalary;
+
+    //مزایا
+    @Column(name = "allowances", precision = 15, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = true, message = "Allowances must be non-negative")
+    private BigDecimal allowances = BigDecimal.ZERO;
+
+    //پرداخت اضافه‌کاری
+    @Column(name = "overtime_pay", precision = 15, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = true, message = "Overtime pay must be non-negative")
+    private BigDecimal overtimePay = BigDecimal.ZERO;
+
+    //جریمه تأخیر
+    @Column(name = "delay_penalty", precision = 15, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = true, message = "Delay penalty must be non-negative")
+    private BigDecimal delayPenalty = BigDecimal.ZERO;
+
+    //مبلغ بیمه‌ای که از حقوق کم شده
+    @Column(name = "insurance_withheld", precision = 15, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = true, message = "Insurance withheld must be non-negative")
+    private BigDecimal insuranceWithheld = BigDecimal.ZERO;
+
+    //مبلغ مالیات کم‌شده
+    @Column(name = "tax_withheld", precision = 15, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = true, message = "Tax withheld must be non-negative")
+    private BigDecimal taxWithheld = BigDecimal.ZERO;
+
+    //حقوق نهایی
+    @Column(name = "net_salary", precision = 15, scale = 2, nullable = false)
+    @NotNull(message = "Net salary must not be null")
+    @DecimalMin(value = "0.0", inclusive = true, message = "Net salary must be non-negative")
+    private BigDecimal netSalary;
+
+    @Column(name = "created_date", nullable = false)
+    @NotNull(message = "Created date must not be null")
+    private LocalDate createdDate;
+
+    @Column(name = "last_updated", nullable = false)
+    @NotNull(message = "Last updated date must not be null")
+    private LocalDate lastUpdated;
+
+    public String getFaPayPeriodStart() {
+        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(payPeriodStart)));
+    }
+
+    public void setFaPayPeriodStart(String faPayPeriodStart) {
+        this.payPeriodStart = LocalDate.from(PersianDate.parse(faPayPeriodStart).toGregorian().atStartOfDay());
+    }
+
+    public String getFaPayPeriodEnd() {
+        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(payPeriodEnd)));
+    }
+
+    public void setFaPayPeriodEnd(String faPayPeriodEnd) {
+        this.payPeriodEnd = LocalDate.from(PersianDate.parse(faPayPeriodEnd).toGregorian().atStartOfDay());
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdDate = LocalDate.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        lastUpdated = LocalDate.now();
+    }
 }
