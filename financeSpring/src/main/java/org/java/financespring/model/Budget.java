@@ -36,16 +36,19 @@ public class Budget {
     @NotBlank(message = "Should Not Be Null")
     private String budgetName;
 
+    //مقدار کل
     @Column(name = "budget_total_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal totalAmount;
 
+    //مقدار خرج‌شده
     @Column(name = "budget_spent_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal spentAmount;
 
+    //باقیمانده‌ی بودجه
     @Column(name = "budget_remaining_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")

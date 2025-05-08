@@ -49,7 +49,7 @@ public class PaymentMethod {
     private String faDate;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Document paymentMethodDoc;
+    private Attachment paymentMethodDoc;
 
     @Column(name = "payment_method_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")

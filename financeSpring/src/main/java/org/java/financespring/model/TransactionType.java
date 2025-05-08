@@ -17,6 +17,7 @@ import lombok.experimental.SuperBuilder;
 
 @Entity(name = "TransactionTypeEntity")
 @Table(name = "TransactionTypeTbl")
+@Cacheable
 public class TransactionType {
 
     @Id

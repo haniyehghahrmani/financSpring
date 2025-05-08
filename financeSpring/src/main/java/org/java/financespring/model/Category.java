@@ -21,6 +21,7 @@ import java.util.List;
 
 @Entity(name = "CategoryEntity")
 @Table(name = "CategoryTbl")
+@Cacheable
 public class Category {
 
     @Id
@@ -41,12 +42,6 @@ public class Category {
     @NotBlank(message = "Should Not Be Null")
     private String description;
 
-    @Column(name = "category_created_date", nullable = false, updatable = false)
-    private LocalDateTime createdDate;
-
-    @Column(name = "category_last_updated")
-    private LocalDateTime lastUpdated;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "category_budget", nullable = false)
     private Budget budget;
@@ -57,14 +52,4 @@ public class Category {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Category> category;
-
-    @PrePersist
-    protected void onCreate() {
-        createdDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        lastUpdated = LocalDateTime.now();
-    }
 }

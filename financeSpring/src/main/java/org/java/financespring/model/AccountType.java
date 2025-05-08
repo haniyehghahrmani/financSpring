@@ -16,16 +16,17 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 
 @Entity(name = "AccountTypeEntity")
-@Table(name = "AccountTypeTbl")
+@Table(name = "account_types")
+@Cacheable
 public class AccountType {
 
     @Id
-    @SequenceGenerator(name = "accountTypeSeq", sequenceName = "accountType_seq", allocationSize = 1)
+    @SequenceGenerator(name = "accountTypeSeq", sequenceName = "account_type_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountTypeSeq")
-    @Column(name = "accountType_id")
+    @Column(name = "a_id")
     private Long id;
 
-    @Column(name = "accountType_name", length = 200, nullable = false)
+    @Column(name = "a_name", length = 200, nullable = false)
     @NotBlank(message = "Account type name should not be blank")
     @Size(min = 3, max = 200, message = "Account type name must be between 3 and 200 characters")
     private String name;

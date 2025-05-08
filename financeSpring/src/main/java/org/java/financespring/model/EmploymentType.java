@@ -17,6 +17,7 @@ import lombok.experimental.SuperBuilder;
 
 @Entity(name = "EmploymentTypeEntity")
 @Table(name = "EmploymentTypeTbl")
+@Cacheable
 public class EmploymentType {
 
     @Id

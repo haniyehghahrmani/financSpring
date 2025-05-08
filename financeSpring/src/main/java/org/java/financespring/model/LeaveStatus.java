@@ -17,6 +17,7 @@ import lombok.experimental.SuperBuilder;
 
 @Entity(name = "LeaveStatusEntity")
 @Table(name = "LeaveStatusTbl")
+@Cacheable
 public class LeaveStatus {
 
     @Id

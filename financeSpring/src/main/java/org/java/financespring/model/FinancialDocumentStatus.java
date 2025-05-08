@@ -17,6 +17,7 @@ import lombok.experimental.SuperBuilder;
 
 @Entity(name = "FinancialDocumentStatusEntity")
 @Table(name = "FinancialDocumentStatusTbl")
+@Cacheable
 public class FinancialDocumentStatus {
 
     @Id

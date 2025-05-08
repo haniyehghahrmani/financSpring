@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class PayrollCalculatorService {
 
-    @Autowired
     private final PayrollSetting payrollSetting;
 
     public PayrollCalculatorService(PayrollSetting payrollSetting) {
@@ -92,7 +91,7 @@ public class PayrollCalculatorService {
                 .subtract(tax)
                 .subtract(insurance);
 
-        // ساختن شیء فیش حقوقی
+        // ساختن  فیش حقوقی
         Payroll payroll = new Payroll();
         payroll.setEmployee(employee);
         payroll.setPayPeriodStart(periodStart);
