@@ -12,7 +12,10 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class CardPayment extends Payment {
+public class CardPayment extends PaymentMethod {
+
+    @Id
+    private Long id;
 
     @Column(name = "card_number", length = 20, nullable = false)
     @NotBlank

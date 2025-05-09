@@ -20,15 +20,8 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @SuperBuilder
 
-@Entity(name = "PaymentMethodEntity")
-@Table(name = "payment_methods")
+@MappedSuperclass
 public class PaymentMethod {
-
-    @Id
-    @SequenceGenerator(name = "paymentMethodSeq", sequenceName = "payment_method_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paymentMethodSeq")
-    @Column(name = "p_id")
-    private Long id;
 
     @Column(name = "p_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")

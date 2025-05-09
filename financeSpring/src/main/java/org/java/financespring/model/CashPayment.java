@@ -12,7 +12,10 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class CashPayment extends Payment {
+public class CashPayment extends PaymentMethod {
+
+    @Id
+    private Long id;
 
     @Column(name = "received_by", length = 100, nullable = false)
     @NotBlank(message = "ReceivedBy is required")

@@ -16,7 +16,10 @@ import java.util.Date;
 @Entity(name = "CheckPaymentEntity")
 @Table(name = "check_payments")
 @Cacheable
-public class CheckPayment extends Payment {
+public class CheckPayment extends PaymentMethod {
+
+    @Id
+    private Long id;
 
     @Column(name = "check_number", length = 50, nullable = false)
     @NotBlank(message = "Check number is required")
