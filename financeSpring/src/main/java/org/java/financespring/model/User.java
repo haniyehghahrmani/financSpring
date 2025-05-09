@@ -19,8 +19,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 
 @Entity(name = "UserEntity")
-@Table(name = "Users")
-@Cacheable
+@Table(name = "users")
 public class User extends Base {
 
     @Id
@@ -48,10 +47,10 @@ public class User extends Base {
     @JoinColumn(name = "u_role_id")
     private Role role;
 
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "u_created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "u_updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist
