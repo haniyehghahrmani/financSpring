@@ -21,13 +21,13 @@ import java.util.List;
 @SuperBuilder
 
 @Entity(name = "FinancialDocumentEntity")
-@Table(name = "FinancialDocumentTbl")
+@Table(name = "financial_documents")
 public class FinancialDocument {
 
     @Id
     @SequenceGenerator(name = "financialDocumentSeq", sequenceName = "financial_document_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "financialDocumentSeq")
-    @Column(name = "financial_document_id")
+    @Column(name = "f_id")
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "financialDocument", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -38,13 +38,13 @@ public class FinancialDocument {
     @NotNull(message = "Attachment type should not be null")
     private FinancialDocumentType documentType;
 
-    @Column(name = "document_number", nullable = false, unique = true)
+    @Column(name = "f_number", nullable = false, unique = true)
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{1,20}$", message = "Invalid Attachment Number")
     @Size(min = 3, max = 200, message = "Attachment numbern must be between 1 and 20 characters")
     @NotBlank(message = "Should Not Be Null")
     private String documentNumber;
 
-    @Column(name = "document_date", nullable = false)
+    @Column(name = "f_date", nullable = false)
     @PastOrPresent(message = "Invalid Attachment Date")
     @NotNull(message = "Attachment date should not be null")
     private LocalDate documentDate;
@@ -52,12 +52,12 @@ public class FinancialDocument {
     @Transient
     private String faDocumentDate;
 
-    @Column(name = "total_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "f_total_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Total amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal totalAmount;
 
-    @Column(name = "paid_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "f_paid_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Paid amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal paidAmount;
@@ -67,7 +67,7 @@ public class FinancialDocument {
     @NotNull(message = "Status should not be null")
     private FinancialDocumentStatus status;
 
-    @Column(name = "description", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "f_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
@@ -78,10 +78,10 @@ public class FinancialDocument {
     @NotNull(message = "Account should not be null")
     private User createdBy;
 
-    @Column(name = "created_date", nullable = false, updatable = false)
+    @Column(name = "f_created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
-    @Column(name = "last_updated")
+    @Column(name = "f_last_updated")
     private LocalDateTime lastUpdated;
 
     @OneToMany(mappedBy = "financialDocument", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

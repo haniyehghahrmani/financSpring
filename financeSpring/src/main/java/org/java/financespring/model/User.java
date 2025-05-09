@@ -19,38 +19,38 @@ import java.time.LocalDateTime;
 @SuperBuilder
 
 @Entity(name = "UserEntity")
-@Table(name = "UserTbl")
+@Table(name = "users")
 public class User extends Base {
 
     @Id
     @SequenceGenerator(name = "userSeq", sequenceName = "user_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeq")
-    @Column(name = "user_id")
+    @Column(name = "u_id")
     private Long id;
 
-    @Column(name = "user_userName", columnDefinition = "NVARCHAR2(50)", unique = true)
+    @Column(name = "u_userName", columnDefinition = "NVARCHAR2(50)", unique = true)
     @Pattern(regexp = "^[a-zA-Z0-9\\s]{3,30}$", message = "Invalid username")
     @Size(min = 3, max = 30, message = "Username must be between 3 and 30 characters")
     @NotBlank(message = "Username should not be null or empty")
     private String username;
 
-    @Column(name = "user_password", columnDefinition = "NVARCHAR2(100)")
+    @Column(name = "u_password", columnDefinition = "NVARCHAR2(100)")
     @Pattern(regexp = "^[a-zA-Z0-9!@#\\$%^&*()_+=-]{8,100}$", message = "Invalid password format")
     @Size(min = 8, max = 100, message = "Password must be between 8 and 100 characters")
     @NotBlank(message = "Password should not be null or empty")
     private String password;
 
-    @Column(name = "user_status")
+    @Column(name = "u_status")
     private boolean status = true;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "user_role_id")
+    @JoinColumn(name = "u_role_id")
     private Role role;
 
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "u_created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "u_updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist

@@ -19,17 +19,17 @@ import java.util.List;
 @Getter
 @Setter
 
-@Entity(name = "roleEntity")
-@Table(name = "role_tbl")
+@Entity(name = "RoleEntity")
+@Table(name = "roles")
 public class Role extends Base {
 
     @Id
     @SequenceGenerator(name = "roleSeq", sequenceName = "role_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roleSeq")
-    @Column(name = "role_id")
+    @Column(name = "r_id")
     private Long id;
 
-    @Column(name = "role_name", columnDefinition = "NVARCHAR2(50)", unique = true)
+    @Column(name = "r_name", columnDefinition = "NVARCHAR2(50)", unique = true)
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,50}$", message = "Invalid role name")
     @Size(min = 3, max = 50, message = "Role name must be between 3 and 50 characters")
     @NotBlank(message = "Role name should not be null or empty")
@@ -40,16 +40,16 @@ public class Role extends Base {
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(
-            name = "Role_Permission",
+            name = "role_permission",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
     private List<Permission> permissions;
 
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "r_created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
+    @Column(name = "r_updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist

@@ -18,13 +18,13 @@ import java.math.BigDecimal;
 @SuperBuilder
 
 @Entity(name = "SalaryStructureEntity")
-@Table(name = "SalaryStructureTbl")
+@Table(name = "salary_structures")
 public class SalaryStructure {
 
     @Id
-    @SequenceGenerator(name = "salaryStructureSeq", sequenceName = "salaryStructure_seq", allocationSize = 1)
+    @SequenceGenerator(name = "salaryStructureSeq", sequenceName = "salary_structure_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "salaryStructureSeq")
-    @Column(name = "salaryStructure_id")
+    @Column(name = "s_id")
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
@@ -33,43 +33,43 @@ public class SalaryStructure {
     private Employee employee; // ارتباط با کارمند
 
     //حقوق پایه
-    @Column(name = "base_salary", precision = 15, scale = 2, nullable = false)
+    @Column(name = "s_base_salary", precision = 15, scale = 2, nullable = false)
     @NotNull(message = "Base salary must not be null")
     @DecimalMin(value = "0.0", inclusive = true, message = "Base salary must be non-negative")
     private BigDecimal baseSalary;
 
     //کمک‌هزینه مسکن
-    @Column(name = "housing_allowance", precision = 15, scale = 2)
+    @Column(name = "s_housing_allowance", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Housing allowance must be non-negative")
     private BigDecimal housingAllowance = BigDecimal.ZERO;
 
     //کمک‌هزینه فرزند
-    @Column(name = "children_allowance", precision = 15, scale = 2)
+    @Column(name = "s_children_allowance", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Children allowance must be non-negative")
     private BigDecimal childrenAllowance = BigDecimal.ZERO;
 
     //کمک‌هزینه ایاب‌وذهاب
-    @Column(name = "transportation_allowance", precision = 15, scale = 2)
+    @Column(name = "s_transportation_allowance", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Transportation allowance must be non-negative")
     private BigDecimal transportationAllowance = BigDecimal.ZERO;
 
     //کمک‌هزینه غذا
-    @Column(name = "meal_allowance", precision = 15, scale = 2)
+    @Column(name = "s_meal_allowance", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Meal allowance must be non-negative")
     private BigDecimal mealAllowance = BigDecimal.ZERO;
 
     //کسورات بیمه
-    @Column(name = "insurance_deduction", precision = 15, scale = 2)
+    @Column(name = "s_insurance_deduction", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Insurance deduction must be non-negative")
     private BigDecimal insuranceDeduction = BigDecimal.ZERO;
 
     //کسورات مالیات
-    @Column(name = "tax_deduction", precision = 15, scale = 2)
+    @Column(name = "s_tax_deduction", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Tax deduction must be non-negative")
     private BigDecimal taxDeduction = BigDecimal.ZERO;
 
     //کسورات دیگر
-    @Column(name = "other_deductions", precision = 15, scale = 2)
+    @Column(name = "s_other_deductions", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Other deductions must be non-negative")
     private BigDecimal otherDeductions = BigDecimal.ZERO;
 

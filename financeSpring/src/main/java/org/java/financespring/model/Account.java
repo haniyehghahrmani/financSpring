@@ -20,16 +20,16 @@ import java.util.List;
 @SuperBuilder
 
 @Entity(name = "AccountEntity")
-@Table(name = "AccountTbl")
+@Table(name = "accounts")
 public class Account {
 
     @Id
     @SequenceGenerator(name = "accountSeq", sequenceName = "account_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accountSeq")
-    @Column(name = "account_id")
+    @Column(name = "a_id")
     private Long id;
 
-    @Column(name = "account_account_name", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "a_name", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Account Name")
     @Size(min = 3, max = 200, message = "Account name must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
@@ -40,21 +40,21 @@ public class Account {
     @NotNull(message = "Account type should not be null")
     private AccountType accountType;
 
-    @Column(name = "account_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "a_balance", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Balance should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Balance must be greater than zero")
     private BigDecimal balance;
 
-    @Column(name = "account_currency", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "a_currency", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Currency")
     @Size(min = 3, max = 200, message = "Currency must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
     private String currency;
 
-    @Column(name = "account_created_date", nullable = false, updatable = false)
+    @Column(name = "a_created_date", nullable = false, updatable = false)
     private LocalDate createdDate;
 
-    @Column(name = "account_last_updated")
+    @Column(name = "a_last_updated")
     private LocalDate lastUpdated;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -62,17 +62,17 @@ public class Account {
     @NotNull(message = "Account status should not be null")
     private AccountStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User ownerAccount;
 
-    @Column(name = "account_description", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "a_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
     private String description;
 
-    @Column(name = "account_opening_date", nullable = false)
+    @Column(name = "a_opening_date", nullable = false)
     @PastOrPresent(message = "Invalid Opening Date")
     @NotNull(message = "Opening date should not be null")
     private LocalDate openingDate;
@@ -80,7 +80,7 @@ public class Account {
     @Transient
     private String faOpeningDate;
 
-    @Column(name = "account_interest_rate", precision = 18, scale = 2, nullable = false)
+    @Column(name = "a_interest_rate", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Interest rate should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Interest rate must be greater than zero")
     private BigDecimal interestRate;

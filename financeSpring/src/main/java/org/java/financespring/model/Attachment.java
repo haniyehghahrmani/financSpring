@@ -10,34 +10,34 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @SuperBuilder
 
-@Entity(name = "attachmentEntity")
-@Table(name = "attachment_tbl")
+@Entity(name = "AttachmentEntity")
+@Table(name = "attachments")
 public class Attachment {
 
     @Id
-    @SequenceGenerator(name = "AttachmentSequence", sequenceName = "attachment_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AttachmentSequence")
-    @Column(name = "attachment_id")
+    @SequenceGenerator(name = "attachmentSeq", sequenceName = "attachment_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attachmentSeq")
+    @Column(name = "a_id")
     private Long id;
 
-    @Column(name = "attachment_file_name", columnDefinition = "NVARCHAR2(50)")
+    @Column(name = "a_file_name", columnDefinition = "NVARCHAR2(50)")
     @NotBlank(message = "Should Not Be Null")
     private String fileName;
 
-    @Column(name = "attachment_file_Type")
+    @Column(name = "a_file_Type")
     private String fileType;
 
-    @Column(name = "attachment_content")
+    @Column(name = "a_content")
     @Lob
     private byte[] content;
 
-    @Column(name = "attachment_file_caption", columnDefinition = "NVARCHAR2(50)")
+    @Column(name = "a_file_caption", columnDefinition = "NVARCHAR2(50)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,50}$", message = "Invalid Caption")
     @Size(min = 3, max = 50, message = "Caption must be between 3 and 50 characters")
     @NotBlank(message = "Should Not Be Null")

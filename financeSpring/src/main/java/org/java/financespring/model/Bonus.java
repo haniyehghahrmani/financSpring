@@ -19,13 +19,13 @@ import java.time.LocalDate;
 @SuperBuilder
 
 @Entity(name = "BonusEntity")
-@Table(name = "BonusTbl")
+@Table(name = "bonuses")
 public class Bonus {
 
     @Id
     @SequenceGenerator(name = "bonusSeq", sequenceName = "bonus_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bonusSeq")
-    @Column(name = "bonus_id")
+    @Column(name = "b_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -36,18 +36,18 @@ public class Bonus {
     @JoinColumn(name = "payroll_id", nullable = false)
     private Payroll payroll;
 
-    @Column(name = "bonus_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "b_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal amount;
 
-    @Column(name = "bonus_reason", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "b_reason", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Reason")
     @Size(min = 3, max = 200, message = "Reason must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
     private String reason;
 
-    @Column(name = "bonus_granted_date", nullable = false)
+    @Column(name = "b_granted_date", nullable = false)
     @PastOrPresent(message = "Invalid Granted Date")
     @NotNull(message = "Granted date should not be null")
     private LocalDate grantedDate;
@@ -56,7 +56,7 @@ public class Bonus {
     private String faGrantedDate;
 
     // آیا این پاداش شامل مالیات هست یا نه
-    @Column(name = "bonus_taxable", nullable = false)
+    @Column(name = "b_taxable", nullable = false)
     @NotNull(message = "taxable must not be null")
     private boolean taxable = false;
 

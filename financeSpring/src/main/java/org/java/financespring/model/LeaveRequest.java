@@ -21,13 +21,13 @@ import java.time.LocalDate;
 @SuperBuilder
 
 @Entity(name = "LeaveRequestEntity")
-@Table(name = "LeaveRequestTbl")
+@Table(name = "leave_requests")
 public class LeaveRequest {
 
     @Id
-    @SequenceGenerator(name = "leaveRequestSeq", sequenceName = "leaveRequest_seq", allocationSize = 1)
+    @SequenceGenerator(name = "leaveRequestSeq", sequenceName = "leave_request_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "leaveRequestSeq")
-    @Column(name = "leaveRequest_id")
+    @Column(name = "l_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -35,7 +35,7 @@ public class LeaveRequest {
     @NotNull(message = "Employee must not be null")
     private Employee employee;
 
-    @Column(name = "start_date", nullable = false)
+    @Column(name = "l_start_date", nullable = false)
     @NotNull(message = "Start date must not be null")
     @FutureOrPresent(message = "Start date cannot be in the past")
     private LocalDate startDate;
@@ -43,7 +43,7 @@ public class LeaveRequest {
     @Transient
     private String faStartDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "l_end_date", nullable = false)
     @NotNull(message = "End date must not be null")
     @FutureOrPresent(message = "End date cannot be in the past")
     private LocalDate endDate;
@@ -55,20 +55,20 @@ public class LeaveRequest {
     @NotNull(message = "Leave type must not be null")
     private LeaveType type; // نوع مرخصی
 
-    @Column(name = "reason", length = 1000)
+    @Column(name = "l_reason", length = 1000)
     @Size(max = 1000, message = "Reason must be at most 1000 characters")
     private String reason;
 
     //تأیید شده؟
-    @Column(name = "is_approved", nullable = false)
+    @Column(name = "l_is_approved", nullable = false)
     private boolean approved = false;
 
-    @Column(name = "request_date", nullable = false)
+    @Column(name = "l_request_date", nullable = false)
     @NotNull(message = "Request date must not be null")
     @PastOrPresent(message = "Request date cannot be in the future")
     private LocalDate requestDate;
 
-    @Column(name = "approval_date")
+    @Column(name = "l_approval_date")
     @PastOrPresent(message = "Approval date cannot be in the future")
     private LocalDate approvalDate;
 

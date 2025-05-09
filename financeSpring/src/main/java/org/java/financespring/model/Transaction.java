@@ -22,16 +22,16 @@ import java.util.List;
 @SuperBuilder
 
 @Entity(name = "TransactionEntity")
-@Table(name = "TransactionTbl")
+@Table(name = "transactions")
 public class Transaction {
 
     @Id
     @SequenceGenerator(name = "transactionSeq", sequenceName = "transaction_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionSeq")
-    @Column(name = "transaction_id")
+    @Column(name = "t_id")
     private Long id;
 
-    @Column(name = "transaction_date", nullable = false)
+    @Column(name = "t_date", nullable = false)
     @PastOrPresent(message = "Invalid Transaction Date")
     @NotNull(message = "Transaction date should not be null")
     private LocalDate transactionDate;
@@ -39,12 +39,12 @@ public class Transaction {
     @Transient
     private String faTransactionDate;
 
-    @Column(name = "transaction_time", nullable = false)
+    @Column(name = "t_time", nullable = false)
     @PastOrPresent(message = "Invalid Transaction Time")
     @NotNull(message = "Transaction time should not be null")
     private LocalTime transactionTime;
 
-    @Column(name = "transaction_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "t_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal amount;
@@ -54,7 +54,7 @@ public class Transaction {
     @NotNull(message = "Account should not be null")
     private TransactionType type;
 
-    @Column(name = "transaction_description", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "t_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
@@ -77,10 +77,10 @@ public class Transaction {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "transaction_created_date", nullable = false, updatable = false)
+    @Column(name = "t_created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
-    @Column(name = "transaction_last_updated")
+    @Column(name = "t_last_updated")
     private LocalDateTime lastUpdated;
 
     @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -16,17 +16,17 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 
 @Entity(name = "LeaveTypeEntity")
-@Table(name = "LeaveTypeTbl")
+@Table(name = "leave_types")
 @Cacheable
 public class LeaveType {
 
     @Id
-    @SequenceGenerator(name = "leaveTypeSeq", sequenceName = "leaveType_seq", allocationSize = 1)
+    @SequenceGenerator(name = "leaveTypeSeq", sequenceName = "leave_type_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "leaveTypeSeq")
-    @Column(name = "leaveType_id")
+    @Column(name = "l_id")
     private Long id;
 
-    @Column(name = "leaveType_name", length = 200, nullable = false)
+    @Column(name = "l_name", length = 200, nullable = false)
     @NotBlank(message = "type name should not be blank")
     @Size(min = 3, max = 200, message = "type name must be between 3 and 200 characters")
     private String name;

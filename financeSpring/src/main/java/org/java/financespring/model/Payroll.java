@@ -19,13 +19,13 @@ import java.time.LocalDate;
 @SuperBuilder
 
 @Entity(name = "PayrollEntity")
-@Table(name = "PayrollTbl")
+@Table(name = "payrolls")
 public class Payroll {
 
     @Id
     @SequenceGenerator(name = "payrollSeq", sequenceName = "payroll_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payrollSeq")
-    @Column(name = "payroll_id")
+    @Column(name = "p_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,14 +34,14 @@ public class Payroll {
     private Employee employee;
 
     //تاریخ شروع و پایان دوره پرداخت حقوق
-    @Column(name = "pay_period_start", nullable = false)
+    @Column(name = "p_pay_period_start", nullable = false)
     @NotNull(message = "Start date must not be null")
     private LocalDate payPeriodStart;
 
     @Transient
     private String faPayPeriodStart;
 
-    @Column(name = "pay_period_end", nullable = false)
+    @Column(name = "p_pay_period_end", nullable = false)
     @NotNull(message = "End date must not be null")
     private LocalDate payPeriodEnd;
 
@@ -49,46 +49,46 @@ public class Payroll {
     private String faPayPeriodEnd;
 
     //حقوق پایه
-    @Column(name = "base_salary", precision = 15, scale = 2, nullable = false)
+    @Column(name = "p_base_salary", precision = 15, scale = 2, nullable = false)
     @DecimalMin(value = "0.0", inclusive = true, message = "Base salary must be non-negative")
     private BigDecimal baseSalary;
 
     //مزایا
-    @Column(name = "allowances", precision = 15, scale = 2)
+    @Column(name = "p_allowances", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Allowances must be non-negative")
     private BigDecimal allowances = BigDecimal.ZERO;
 
     //پرداخت اضافه‌کاری
-    @Column(name = "overtime_pay", precision = 15, scale = 2)
+    @Column(name = "p_overtime_pay", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Overtime pay must be non-negative")
     private BigDecimal overtimePay = BigDecimal.ZERO;
 
     //جریمه تأخیر
-    @Column(name = "delay_penalty", precision = 15, scale = 2)
+    @Column(name = "p_delay_penalty", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Delay penalty must be non-negative")
     private BigDecimal delayPenalty = BigDecimal.ZERO;
 
     //مبلغ بیمه‌ای که از حقوق کم شده
-    @Column(name = "insurance_withheld", precision = 15, scale = 2)
+    @Column(name = "p_insurance_withheld", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Insurance withheld must be non-negative")
     private BigDecimal insuranceWithheld = BigDecimal.ZERO;
 
     //مبلغ مالیات کم‌شده
-    @Column(name = "tax_withheld", precision = 15, scale = 2)
+    @Column(name = "p_tax_withheld", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Tax withheld must be non-negative")
     private BigDecimal taxWithheld = BigDecimal.ZERO;
 
     //حقوق نهایی
-    @Column(name = "net_salary", precision = 15, scale = 2, nullable = false)
+    @Column(name = "p_net_salary", precision = 15, scale = 2, nullable = false)
     @NotNull(message = "Net salary must not be null")
     @DecimalMin(value = "0.0", inclusive = true, message = "Net salary must be non-negative")
     private BigDecimal netSalary;
 
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "p_created_date", nullable = false)
     @NotNull(message = "Created date must not be null")
     private LocalDate createdDate;
 
-    @Column(name = "last_updated", nullable = false)
+    @Column(name = "p_last_updated", nullable = false)
     @NotNull(message = "Last updated date must not be null")
     private LocalDate lastUpdated;
 

@@ -20,34 +20,34 @@ import java.util.List;
 @SuperBuilder
 
 @Entity(name = "CategoryEntity")
-@Table(name = "CategoryTbl")
+@Table(name = "categories")
 @Cacheable
 public class Category {
 
     @Id
     @SequenceGenerator(name = "categorySeq", sequenceName = "category_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categorySeq")
-    @Column(name = "category_id")
+    @Column(name = "c_id")
     private Long id;
 
-    @Column(name = "category_name", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "c_name", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Name")
     @Size(min = 3, max = 200, message = "Name must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
     private String categoryName;
 
-    @Column(name = "category_description", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "c_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "category_budget", nullable = false)
+    @JoinColumn(name = "c_budget", nullable = false)
     private Budget budget;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "category_transaction", nullable = false)
+    @JoinColumn(name = "c_transaction", nullable = false)
     private Transaction transaction;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

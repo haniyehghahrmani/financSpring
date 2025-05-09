@@ -16,17 +16,17 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 
 @Entity(name = "EmploymentTypeEntity")
-@Table(name = "EmploymentTypeTbl")
+@Table(name = "employment_types")
 @Cacheable
 public class EmploymentType {
 
     @Id
-    @SequenceGenerator(name = "employmentTypeSeq", sequenceName = "employmentType_seq", allocationSize = 1)
+    @SequenceGenerator(name = "employmentTypeSeq", sequenceName = "employment_type_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employmentTypeSeq")
-    @Column(name = "employmentType_id")
+    @Column(name = "e_id")
     private Long id;
 
-    @Column(name = "employmentType_name", length = 200, nullable = false)
+    @Column(name = "e_name", length = 200, nullable = false)
     @NotBlank(message = "Financial document type name should not be blank")
     @Size(min = 3, max = 200, message = "Financial document type name must be between 3 and 200 characters")
     private String name;

@@ -21,40 +21,40 @@ import java.util.List;
 @SuperBuilder
 
 @Entity(name = "BudgetEntity")
-@Table(name = "BudgetTbl")
+@Table(name = "budgets")
 public class Budget {
 
     @Id
     @SequenceGenerator(name = "budgetSeq", sequenceName = "budget_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "budgetSeq")
-    @Column(name = "budget_id")
+    @Column(name = "b_id")
     private Long id;
 
-    @Column(name = "budget_name", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "b_name", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid name")
     @Size(min = 3, max = 200, message = "Name must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
     private String budgetName;
 
     //مقدار کل
-    @Column(name = "budget_total_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "b_total_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal totalAmount;
 
     //مقدار خرج‌شده
-    @Column(name = "budget_spent_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "b_spent_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal spentAmount;
 
     //باقیمانده‌ی بودجه
-    @Column(name = "budget_remaining_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "b_remaining_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal remainingAmount;
 
-    @Column(name = "budget_start_date", nullable = false)
+    @Column(name = "b_start_date", nullable = false)
     @PastOrPresent(message = "Invalid Start Date")
     @NotNull(message = "Start date should not be null")
     private LocalDate startDate;
@@ -62,7 +62,7 @@ public class Budget {
     @Transient
     private String faStartDate;
 
-    @Column(name = "budget_end_date", nullable = false)
+    @Column(name = "b_end_date", nullable = false)
     @PastOrPresent(message = "Invalid End Date")
     @NotNull(message = "End date should not be null")
     private LocalDate endDate;
@@ -71,23 +71,23 @@ public class Budget {
     private String faEndDate;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "budget_budget_status", nullable = false)
+    @JoinColumn(name = "budget_status", nullable = false)
     private BudgetStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "budget_owner", nullable = false)
     private User owner;
 
-    @Column(name = "budget_description", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "b_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
     @NotBlank(message = "Should Not Be Null")
     private String description;
 
-    @Column(name = "budget_created_date", nullable = false, updatable = false)
+    @Column(name = "b_created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
-    @Column(name = "budget_last_updated")
+    @Column(name = "b_last_updated")
     private LocalDateTime lastUpdated;
 
     @OneToMany(mappedBy = "budget", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
