@@ -15,7 +15,6 @@ import java.util.Date;
 
 @Entity(name = "CheckPaymentEntity")
 @Table(name = "check_payments")
-@Cacheable
 public class CheckPayment extends PaymentMethod {
 
     @Id

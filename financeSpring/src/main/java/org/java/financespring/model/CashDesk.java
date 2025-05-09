@@ -16,7 +16,6 @@ import java.util.Date;
 
 @Entity(name = "CashDeskEntity")
 @Table(name = "cash_desks")
-@Cacheable
 public class CashDesk {
 
     @Id

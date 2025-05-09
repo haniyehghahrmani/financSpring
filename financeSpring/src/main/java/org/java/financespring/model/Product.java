@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 
 @Entity(name = "ProductEntity")
 @Table(name = "products")
-@Cacheable
 public class Product {
 
     @Id
