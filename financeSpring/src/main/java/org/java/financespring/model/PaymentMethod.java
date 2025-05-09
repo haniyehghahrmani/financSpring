@@ -20,17 +20,17 @@ import java.time.LocalTime;
 @MappedSuperclass
 public abstract class PaymentMethod {
 
-    @Column(name = "pm_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "p_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal amount;
 
-    @Column(name = "pm_date", nullable = false)
+    @Column(name = "p_date", nullable = false)
     @NotNull(message = "Payment method date should not be null")
     @PastOrPresent(message = "Payment method date must be in the past or present")
     private LocalDate date;
 
-    @Column(name = "pm_time", nullable = false)
+    @Column(name = "p_time", nullable = false)
     @NotNull(message = "Time should not be null")
     @PastOrPresent(message = "Time must be in the past or present")
     private LocalTime time;
@@ -39,21 +39,21 @@ public abstract class PaymentMethod {
     private String faDate;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "pm_attachment_id")
+    @JoinColumn(name = "p_attachment_id")
     private Attachment paymentMethodDoc;
 
-    @Column(name = "pm_description", length = 200, columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "p_description", length = 200, columnDefinition = "NVARCHAR2(200)")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid description")
     private String description;
 
-    @Column(name = "pm_created_date", nullable = false, updatable = false)
+    @Column(name = "p_created_date", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "pm_last_updated")
+    @Column(name = "p_last_updated")
     private LocalDateTime updatedAt;
 
-    @Column(name = "pm_is_active")
+    @Column(name = "p_is_active")
     private Boolean isActive = true;
 
     @PrePersist

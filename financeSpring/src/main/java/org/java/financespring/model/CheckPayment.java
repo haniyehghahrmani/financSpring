@@ -20,7 +20,7 @@ public class CheckPayment extends PaymentMethod {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ch_id")
+    @Column(name = "c_id")
     private Long id;
 
     @Column(name = "c_number", length = 50, nullable = false)
