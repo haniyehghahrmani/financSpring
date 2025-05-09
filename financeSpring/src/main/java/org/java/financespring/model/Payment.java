@@ -34,7 +34,7 @@ public class Payment {
     @NotNull(message = "Payment date is required")
     private Date paymentDate;
 
-    @OneToMany
+    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private PaymentStatus paymentStatus;
 
     @Column(name = "p_description", length = 500)

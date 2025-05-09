@@ -24,7 +24,7 @@ public class Bank {
     @SequenceGenerator(name = "bankSeq", sequenceName = "bank_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bankSeq")
     @Column(name = "b_id")
-    private Long bankID;
+    private Long id;
 
     @Column(name = "b_name", length = 200, nullable = false)
     @NotBlank(message = "Bank name should not be blank")

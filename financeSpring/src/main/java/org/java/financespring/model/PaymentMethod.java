@@ -3,10 +3,7 @@ package org.java.financespring.model;
 import com.github.mfathi91.time.PersianDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
@@ -21,7 +18,7 @@ import java.time.LocalTime;
 @SuperBuilder
 
 @MappedSuperclass
-public class PaymentMethod {
+public abstract class PaymentMethod {
 
     @Column(name = "pm_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
@@ -29,25 +26,25 @@ public class PaymentMethod {
     private BigDecimal amount;
 
     @Column(name = "pm_date", nullable = false)
-    @PastOrPresent(message = "Invalid Payment Method Date Time")
-    @NotNull(message = "payment method date time should not be null")
+    @NotNull(message = "Payment method date should not be null")
+    @PastOrPresent(message = "Payment method date must be in the past or present")
     private LocalDate date;
 
     @Column(name = "pm_time", nullable = false)
-    @PastOrPresent(message = "Invalid  Time")
     @NotNull(message = "Time should not be null")
+    @PastOrPresent(message = "Time must be in the past or present")
     private LocalTime time;
 
     @Transient
     private String faDate;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "pm_attachment_id")
     private Attachment paymentMethodDoc;
 
-    @Column(name = "pm_description", columnDefinition = "NVARCHAR2(200)")
-    @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
+    @Column(name = "pm_description", length = 200, columnDefinition = "NVARCHAR2(200)")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
-//    @NotBlank(message = "Should Not Be Null")
+    @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid description")
     private String description;
 
     @Column(name = "pm_created_date", nullable = false, updatable = false)
@@ -55,6 +52,9 @@ public class PaymentMethod {
 
     @Column(name = "pm_last_updated")
     private LocalDateTime updatedAt;
+
+    @Column(name = "pm_is_active")
+    private Boolean isActive = true;
 
     @PrePersist
     protected void onCreate() {
@@ -67,13 +67,15 @@ public class PaymentMethod {
     }
 
     public String getFaDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(date)));
+        if (this.date != null) {
+            return PersianDate.fromGregorian(this.date).toString();
+        }
+        return null;
     }
 
     public void setFaDate(String faDate) {
-        this.date = LocalDate.from(PersianDate.parse(faDate).toGregorian().atStartOfDay());
+        if (faDate != null && !faDate.isBlank()) {
+            this.date = PersianDate.parse(faDate).toGregorian();
+        }
     }
-
-    @Column(name = "is_active")
-    private Boolean isActive = true;
 }

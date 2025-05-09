@@ -15,6 +15,9 @@ import lombok.experimental.SuperBuilder;
 public class CashPayment extends PaymentMethod {
 
     @Id
+    @SequenceGenerator(name = "cashPaymentSeq", sequenceName = "cash_payment_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cashPaymentSeq")
+    @Column(name = "b_id")
     private Long id;
 
     @Column(name = "c_received_by", length = 100, nullable = false)
