@@ -20,8 +20,9 @@ import java.util.Date;
 public class CashDesk {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "c_id")
+    @SequenceGenerator(name = "cashDeskSeq", sequenceName = "cash_desk_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cashDeskSeq")
+    @Column(name = "p_id")
     private Long id;
 
     @Column(name = "c_name", nullable = false, length = 100)

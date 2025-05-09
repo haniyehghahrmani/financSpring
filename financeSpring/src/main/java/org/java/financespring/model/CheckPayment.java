@@ -19,8 +19,9 @@ import java.util.Date;
 public class CheckPayment extends PaymentMethod {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "c_id")
+    @SequenceGenerator(name = "checkSeq", sequenceName = "check_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "checkSeq")
+    @Column(name = "p_id")
     private Long id;
 
     @Column(name = "c_number", length = 50, nullable = false)
