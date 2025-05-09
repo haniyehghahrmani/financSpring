@@ -1,5 +1,6 @@
 package org.java.financespring.service;
 
+import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Bonus;
 
 import java.util.List;
@@ -8,7 +9,7 @@ public interface BonusService {
 
     Bonus save(Bonus bonus);
 
-    Bonus edit(Long id, Bonus bonus);
+    Bonus edit(Long id, Bonus bonus) throws NoContentException;
 
     void remove(Long id);
 
