@@ -1,5 +1,6 @@
 package org.java.financespring.service.impl;
 
+import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Attachment;
 import org.java.financespring.repository.AttachmentRepository;
 import org.java.financespring.service.AttachmentService;
@@ -13,11 +14,10 @@ import java.util.List;
 @Service
 public class AttachmentServiceImpl implements AttachmentService {
 
-    private final AttachmentRepository attachmentRepository;
-
-    @Autowired
-    public AttachmentServiceImpl(AttachmentRepository attachmentRepository) {
-        this.attachmentRepository = attachmentRepository;
+    private final AttachmentRepository repository;
+    
+    public AttachmentServiceImpl(AttachmentRepository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -26,12 +26,12 @@ public class AttachmentServiceImpl implements AttachmentService {
         attachment.setFileType(file.getContentType());
         attachment.setContent(file.getBytes());
 
-        return attachmentRepository.save(attachment);
+        return repository.save(attachment);
     }
 
     @Override
     public Attachment edit(Long id, Attachment attachment, MultipartFile file) throws IOException, NoContentException {
-        Attachment existingAttachment=attachmentRepository.findById(id)
+        Attachment existingAttachment=repository.findById(id)
                 .orElseThrow(
                         () -> new NoContentException("No Active Attachment Was Found with id " + id + " To Update!")
                 );
@@ -40,27 +40,27 @@ public class AttachmentServiceImpl implements AttachmentService {
         existingAttachment.setContent(file.getBytes());
         existingAttachment.setCaption(attachment.getCaption());
 
-        return attachmentRepository.saveAndFlush(existingAttachment);
+        return repository.saveAndFlush(existingAttachment);
     }
 
     @Override
     public void remove(Long id) {
-        attachmentRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public List<Attachment> findAll() {
-        return attachmentRepository.findAll();
+        return repository.findAll();
     }
 
     @Override
     public Attachment findById(Long id) {
-        return attachmentRepository.findById(id).orElse(null);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public Attachment findByFileName(String fileName) {
-        return attachmentRepository.findByFileName(fileName).orElse(null);
+        return repository.findByFileName(fileName).orElse(null);
     }
 
 }

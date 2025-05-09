@@ -1,6 +1,7 @@
 package org.java.financespring.service;
 
 
+import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Attachment;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,7 +12,7 @@ public interface AttachmentService {
 
     Attachment save(Attachment attachment, MultipartFile file) throws IOException;
 
-    Attachment edit(Long id, Attachment attachment, MultipartFile file) throws IOException;
+    Attachment edit(Long id, Attachment attachment, MultipartFile file) throws IOException, NoContentException;
 
     void remove(Long id);
 
