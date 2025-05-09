@@ -78,6 +78,6 @@ public class Bank {
         this.lastUpdated = new Date();
     }
 
-    @Column(name = "is_active")
+    @Column(name = "b_is_active")
     private Boolean isActive = true;
 }

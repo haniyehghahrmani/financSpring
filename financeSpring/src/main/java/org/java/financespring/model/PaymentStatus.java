@@ -19,18 +19,18 @@ public class PaymentStatus {
     @Id
     @SequenceGenerator(name = "paymentStatusSeq", sequenceName = "payment_status_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paymentStatusSeq")
-    @Column(name = "ps-status_id")
+    @Column(name = "p_status_id")
     private Long id;
 
-    @Column(name = "ps-name", nullable = false, length = 50, unique = true)
+    @Column(name = "p_name", nullable = false, length = 50, unique = true)
     @NotBlank(message = "Status name is required")
     @Size(max = 50)
     private String statusName;
 
-    @Column(name = "ps-description", length = 255)
+    @Column(name = "p_description", length = 255)
     @Size(max = 255)
     private String description;
 
-    @Column(name = "is_active")
+    @Column(name = "p_is_active")
     private Boolean isActive = true;
 }

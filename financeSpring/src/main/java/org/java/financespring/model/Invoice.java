@@ -23,7 +23,7 @@ public class Invoice {
     @Id
     @SequenceGenerator(name = "invoiceSeq", sequenceName = "invoice_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoiceSeq")
-    @Column(name = "id")
+    @Column(name = "i_id")
     private Long id;
 
     @Column(name = "i_number", nullable = false, length = 50)

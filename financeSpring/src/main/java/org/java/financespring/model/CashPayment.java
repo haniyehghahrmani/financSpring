@@ -15,20 +15,18 @@ import lombok.experimental.SuperBuilder;
 public class CashPayment extends PaymentMethod {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "c_id")
     private Long id;
 
-    @Column(name = "c-received_by", length = 100, nullable = false)
+    @Column(name = "c_received_by", length = 100, nullable = false)
     @NotBlank(message = "ReceivedBy is required")
     @Size(max = 100)
     private String receivedBy;
 
-    @Column(name = "c-location", length = 200)
+    @Column(name = "c_location", length = 200)
     @Size(max = 200)
     private String location;
 
-    @Column(name = "c-is_active")
+    @Column(name = "c_is_active")
     private Boolean isActive = true;
 }
 
