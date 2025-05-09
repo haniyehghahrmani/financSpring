@@ -47,6 +47,10 @@ public class User extends Base {
     @JoinColumn(name = "u_role_id")
     private Role role;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "person_id", nullable = false)
+    private Person person;
+
     @Column(name = "u_created_at", updatable = false)
     private LocalDateTime createdAt;
 
