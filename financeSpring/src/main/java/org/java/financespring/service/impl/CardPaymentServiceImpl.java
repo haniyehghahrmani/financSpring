@@ -55,7 +55,11 @@ public class CardPaymentServiceImpl implements CardPaymentService {
 
     @Override
     public CardPayment findById(Long id) throws NoContentException {
-        return repository.findById(id)
-                .orElseThrow(() -> new NoContentException("No Card Payment found with id " + id));
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No Card Payment found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

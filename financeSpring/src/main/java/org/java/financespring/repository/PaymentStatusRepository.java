@@ -13,14 +13,4 @@ import java.util.Optional;
 @Repository
 public interface PaymentStatusRepository extends JpaRepository<PaymentStatus, Long> {
 
-    @Query("SELECT b FROM PaymentStatus b WHERE b.id = :id AND b.active = true")
-    Optional<PaymentStatus> findByIdAndActiveTrue(Long id);
-
-    @Query("SELECT b FROM PaymentStatus b WHERE b.active = true")
-    List<PaymentStatus> findAllByActiveTrue();
-
-    @Modifying
-    @Transactional
-    @Query("UPDATE PaymentStatus b SET b.active = false WHERE b.id = :id")
-    void logicallyDeleteById(Long id);
 }

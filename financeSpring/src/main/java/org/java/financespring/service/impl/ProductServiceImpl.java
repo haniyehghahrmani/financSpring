@@ -50,7 +50,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) throws NoContentException {
-        return repository.findById(id)
-                .orElseThrow(() -> new NoContentException("Product Not Found"));
-    }
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No Product found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }    }
 }

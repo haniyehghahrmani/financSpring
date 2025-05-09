@@ -11,14 +11,5 @@ import java.util.Optional;
 @Repository
 public interface CashPaymentRepository extends JpaRepository<CashPayment, Long> {
 
-    @Query("SELECT b FROM CashPayment b WHERE b.id = :id AND b.active = true")
-    Optional<CashPayment> findByIdAndActiveTrue(Long id);
 
-    @Query("SELECT b FROM CashPayment b WHERE b.active = true")
-    List<CashPayment> findAllByActiveTrue();
-
-    @Modifying
-    @Transactional
-    @Query("UPDATE CashPayment b SET b.active = false WHERE b.id = :id")
-    void logicallyDeleteById(Long id);
 }

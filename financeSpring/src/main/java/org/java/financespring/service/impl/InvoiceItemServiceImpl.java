@@ -52,6 +52,10 @@ public class InvoiceItemServiceImpl implements InvoiceItemService {
 
     @Override
     public InvoiceItem findById(Long id) {
-        return repository.findById(id).orElseThrow(null);
-    }
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No Invoice Item found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }    }
 }

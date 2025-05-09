@@ -48,7 +48,11 @@ public class CashPaymentServiceImpl implements CashPaymentService {
 
     @Override
     public CashPayment findById(Long id) throws NoContentException {
-        return repository.findById(id)
-                .orElseThrow(() -> new NoContentException("No Cash Payment found with id " + id));
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No Cash Payment found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

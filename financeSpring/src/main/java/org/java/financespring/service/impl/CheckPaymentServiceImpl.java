@@ -48,6 +48,10 @@ public class CheckPaymentServiceImpl implements CheckPaymentService {
 
     @Override
     public CheckPayment findById(Long id) throws NoContentException {
-        return repository.findById(id).orElseThrow(() -> new NoContentException("Check Payment Not Found"));
-    }
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No Check Payment found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }    }
 }

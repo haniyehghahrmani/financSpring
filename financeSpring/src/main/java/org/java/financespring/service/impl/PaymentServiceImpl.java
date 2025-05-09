@@ -49,7 +49,10 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public Payment findById(Long id) throws NoContentException {
-        return repository.findById(id)
-                .orElseThrow(() -> new NoContentException("Payment Not Found"));
-    }
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No Payment found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }    }
 }

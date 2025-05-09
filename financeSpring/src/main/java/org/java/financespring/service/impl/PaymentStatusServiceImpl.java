@@ -48,7 +48,10 @@ public class PaymentStatusServiceImpl implements PaymentStatusService {
 
     @Override
     public PaymentStatus findById(Long id) throws NoContentException {
-        return repository.findById(id)
-                .orElseThrow(() -> new NoContentException("PaymentStatus Not Found"));
-    }
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No Payment Status found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }    }
 }
