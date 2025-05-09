@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CashDeskRepositoey extends JpaRepository<CashDesk, Long> {
+public interface CashDeskRepository extends JpaRepository<CashDesk, Long> {
 
     @Query("SELECT b FROM CashDesk b WHERE b.id = :id AND b.active = true")
     Optional<CashDesk> findByIdAndActiveTrue(Long id);

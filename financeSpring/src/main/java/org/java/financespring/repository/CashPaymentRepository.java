@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CashPaymentRepositoey extends JpaRepository<CashPayment, Long> {
+public interface CashPaymentRepository extends JpaRepository<CashPayment, Long> {
 
     @Query("SELECT b FROM CashPayment b WHERE b.id = :id AND b.active = true")
     Optional<CashPayment> findByIdAndActiveTrue(Long id);
