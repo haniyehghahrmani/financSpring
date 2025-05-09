@@ -55,7 +55,12 @@ public class AttachmentServiceImpl implements AttachmentService {
 
     @Override
     public Attachment findById(Long id) {
-        return repository.findById(id).orElse(null);
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No attachment found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

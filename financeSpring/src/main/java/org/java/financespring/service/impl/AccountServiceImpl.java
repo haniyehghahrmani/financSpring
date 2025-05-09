@@ -54,6 +54,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account findById(Long id) {
-        return repository.findById(id).orElseThrow(null);
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No account found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

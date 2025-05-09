@@ -45,6 +45,11 @@ public class AccountStatusServiceImpl implements AccountStatusService {
 
     @Override
     public AccountStatus findById(Long id) {
-        return repository.findById(id).orElseThrow(null);
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No account status found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

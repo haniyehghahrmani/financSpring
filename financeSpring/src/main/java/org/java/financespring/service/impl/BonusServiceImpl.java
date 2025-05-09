@@ -50,6 +50,11 @@ public class BonusServiceImpl implements BonusService {
 
     @Override
     public Bonus findById(Long id) {
-        return repository.findById(id).orElseThrow(null);
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No bonus found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

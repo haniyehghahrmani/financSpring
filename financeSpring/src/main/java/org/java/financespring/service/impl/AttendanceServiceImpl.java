@@ -53,6 +53,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public Attendance findById(Long id) {
-        return repository.findById(id).orElseThrow(null);
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No attendance found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
