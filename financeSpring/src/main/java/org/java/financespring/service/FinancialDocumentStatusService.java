@@ -1,6 +1,8 @@
 package org.java.financespring.service;
 
+import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.FinancialDocumentStatus;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,6 +13,9 @@ public interface FinancialDocumentStatusService {
     FinancialDocumentStatus edit(Long id, FinancialDocumentStatus financialDocumentStatus);
 
     void remove(Long id);
+
+    @Transactional
+    void logicalRemove(Long id) throws NoContentException;
 
     List<FinancialDocumentStatus> findAll();
 

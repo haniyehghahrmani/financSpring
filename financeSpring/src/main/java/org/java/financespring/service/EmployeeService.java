@@ -1,6 +1,8 @@
 package org.java.financespring.service;
 
+import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Employee;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,6 +13,9 @@ public interface EmployeeService {
     Employee edit(Long id, Employee employee);
 
     void remove(Long id);
+
+    @Transactional
+    void logicalRemove(Long id) throws NoContentException;
 
     List<Employee> findAll();
 
