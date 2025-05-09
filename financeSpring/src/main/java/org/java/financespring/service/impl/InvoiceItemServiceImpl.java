@@ -46,13 +46,12 @@ public class InvoiceItemServiceImpl implements InvoiceItemService {
     }
 
     @Override
-    public List<InvoiceItemRepository> findAll() {
+    public List<InvoiceItem> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public InvoiceItemRepository findById(Long id) throws NoContentException {
-        return repository.findById(id)
-                .orElseThrow(() -> new NoContentException("InvoiceItem Not Found"));
+    public InvoiceItem findById(Long id) {
+        return repository.findById(id).orElseThrow(null);
     }
 }

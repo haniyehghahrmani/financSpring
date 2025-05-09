@@ -15,7 +15,7 @@ public interface InvoiceItemService {
 
     void remove(Long id);
 
-    List<InvoiceItemRepository> findAll();
+    List<InvoiceItem> findAll();
 
-    InvoiceItemRepository findById(Long id) throws NoContentException;
+    InvoiceItem findById(Long id) throws NoContentException;
 }
