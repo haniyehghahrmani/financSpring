@@ -37,7 +37,7 @@ public class CardPayment extends PaymentMethod {
     @Pattern(regexp = "^\\d{3,4}$")
     private String cvv;
 
-    @Column(name = "bank_id", nullable = false)
+    @Column(name = "b_id", nullable = false)
     @NotNull
     private Integer bankID;
 }

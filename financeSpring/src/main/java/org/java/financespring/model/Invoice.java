@@ -26,12 +26,12 @@ public class Invoice {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "invoice_number", nullable = false, length = 50)
+    @Column(name = "i_number", nullable = false, length = 50)
     @NotBlank(message = "Invoice number is required")
     @Size(max = 50)
     private String invoiceNumber;
 
-    @Column(name = "invoice_date", nullable = false)
+    @Column(name = "i_date", nullable = false)
     @Temporal(TemporalType.DATE)
     @NotNull
     private Date invoiceDate;
@@ -87,11 +87,9 @@ public class Invoice {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
 
-    // ارتباط با آیتم‌های فاکتور
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<InvoiceItem> invoiceItems;
 
-    // ارتباط با تراکنش‌ها
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Transaction> transactions;
 

@@ -23,10 +23,10 @@ public class Bank {
     @Id
     @SequenceGenerator(name = "bankSeq", sequenceName = "bank_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bankSeq")
-    @Column(name = "bank_id")
+    @Column(name = "b_id")
     private Long bankID;
 
-    @Column(name = "bank_name", length = 200, nullable = false)
+    @Column(name = "b_name", length = 200, nullable = false)
     @NotBlank(message = "Bank name should not be blank")
     @Size(min = 2, max = 200, message = "Bank name must be between 2 and 200 characters")
     private String bankName;

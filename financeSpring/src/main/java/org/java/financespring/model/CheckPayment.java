@@ -21,12 +21,12 @@ public class CheckPayment extends PaymentMethod {
     @Id
     private Long id;
 
-    @Column(name = "check_number", length = 50, nullable = false)
+    @Column(name = "ch_number", length = 50, nullable = false)
     @NotBlank(message = "Check number is required")
     @Size(max = 50, message = "Check number must be at most 50 characters")
     private String chequeNumber;
 
-    @Column(name = "bank_name", length = 100, nullable = false)
+    @Column(name = "b_name", length = 100, nullable = false)
     @NotBlank(message = "Bank name is required")
     @Size(max = 100, message = "Bank name must be at most 100 characters")
     private String bankName;
