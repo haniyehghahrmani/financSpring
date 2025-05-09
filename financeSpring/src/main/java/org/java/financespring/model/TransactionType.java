@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "TransactionTypeEntity")
 @Table(name = "transaction_types")
 @Cacheable
-public class TransactionType {
+public class TransactionType extends Base{
 
     @Id
     @SequenceGenerator(name = "transactionTypeSeq", sequenceName = "transaction_type_seq", allocationSize = 1)

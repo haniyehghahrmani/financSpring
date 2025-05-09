@@ -21,7 +21,7 @@ import java.util.List;
 
 @Entity(name = "AccountEntity")
 @Table(name = "accounts")
-public class Account {
+public class Account extends Base{
 
     @Id
     @SequenceGenerator(name = "accountSeq", sequenceName = "account_seq", allocationSize = 1)

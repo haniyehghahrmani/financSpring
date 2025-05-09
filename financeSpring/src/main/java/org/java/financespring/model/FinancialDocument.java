@@ -22,7 +22,7 @@ import java.util.List;
 
 @Entity(name = "FinancialDocumentEntity")
 @Table(name = "financial_documents")
-public class FinancialDocument {
+public class FinancialDocument extends Base{
 
     @Id
     @SequenceGenerator(name = "financialDocumentSeq", sequenceName = "financial_document_seq", allocationSize = 1)

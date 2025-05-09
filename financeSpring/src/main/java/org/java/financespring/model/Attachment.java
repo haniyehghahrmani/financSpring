@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 
 @Entity(name = "AttachmentEntity")
 @Table(name = "attachments")
-public class Attachment {
+public class Attachment extends Base{
 
     @Id
     @SequenceGenerator(name = "attachmentSeq", sequenceName = "attachment_seq", allocationSize = 1)

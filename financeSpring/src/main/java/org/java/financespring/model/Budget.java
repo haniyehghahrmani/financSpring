@@ -22,7 +22,7 @@ import java.util.List;
 
 @Entity(name = "BudgetEntity")
 @Table(name = "budgets")
-public class Budget {
+public class Budget extends Base{
 
     @Id
     @SequenceGenerator(name = "budgetSeq", sequenceName = "budget_seq", allocationSize = 1)

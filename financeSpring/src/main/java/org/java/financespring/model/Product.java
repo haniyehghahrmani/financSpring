@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 @Entity(name = "ProductEntity")
 @Table(name = "products")
-public class Product {
+public class Product extends Base{
 
     @Id
     @SequenceGenerator(name = "productSeq", sequenceName = "product_seq", allocationSize = 1)

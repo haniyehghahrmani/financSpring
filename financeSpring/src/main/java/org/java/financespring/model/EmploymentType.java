@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "EmploymentTypeEntity")
 @Table(name = "employment_types")
 @Cacheable
-public class EmploymentType {
+public class EmploymentType extends Base{
 
     @Id
     @SequenceGenerator(name = "employmentTypeSeq", sequenceName = "employment_type_seq", allocationSize = 1)

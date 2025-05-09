@@ -20,7 +20,7 @@ import java.time.LocalDate;
 
 @Entity(name = "PayrollEntity")
 @Table(name = "payrolls")
-public class Payroll {
+public class Payroll extends Base{
 
     @Id
     @SequenceGenerator(name = "payrollSeq", sequenceName = "payroll_seq", allocationSize = 1)

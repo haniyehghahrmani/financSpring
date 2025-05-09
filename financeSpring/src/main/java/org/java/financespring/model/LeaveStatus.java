@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "LeaveStatusEntity")
 @Table(name = "leave_statuses")
 @Cacheable
-public class LeaveStatus {
+public class LeaveStatus extends Base{
 
     @Id
     @SequenceGenerator(name = "leaveStatusSeq", sequenceName = "leave_status_seq", allocationSize = 1)

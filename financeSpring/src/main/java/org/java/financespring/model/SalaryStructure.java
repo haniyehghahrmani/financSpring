@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 
 @Entity(name = "SalaryStructureEntity")
 @Table(name = "salary_structures")
-public class SalaryStructure {
+public class SalaryStructure extends Base{
 
     @Id
     @SequenceGenerator(name = "salaryStructureSeq", sequenceName = "salary_structure_seq", allocationSize = 1)

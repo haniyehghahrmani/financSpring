@@ -18,7 +18,7 @@ import java.time.LocalTime;
 @SuperBuilder
 
 @MappedSuperclass
-public abstract class PaymentMethod {
+public abstract class PaymentMethod extends Base{
 
     @Column(name = "p_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")

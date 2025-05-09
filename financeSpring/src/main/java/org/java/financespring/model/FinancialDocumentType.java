@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "FinancialDocumentTypeEntity")
 @Table(name = "financial_document_types")
 @Cacheable
-public class FinancialDocumentType {
+public class FinancialDocumentType extends Base{
 
     @Id
     @SequenceGenerator(name = "financialDocumentTypeSeq", sequenceName = "financial_document_type_seq", allocationSize = 1)

@@ -22,7 +22,7 @@ import java.util.List;
 @Entity(name = "CategoryEntity")
 @Table(name = "categories")
 @Cacheable
-public class Category {
+public class Category extends Base{
 
     @Id
     @SequenceGenerator(name = "categorySeq", sequenceName = "category_seq", allocationSize = 1)

@@ -18,7 +18,7 @@ import java.util.Date;
 @Entity(name = "BankEntity")
 @Table(name = "banks")
 @Cacheable
-public class Bank {
+public class Bank extends Base{
 
     @Id
     @SequenceGenerator(name = "bankSeq", sequenceName = "bank_seq", allocationSize = 1)

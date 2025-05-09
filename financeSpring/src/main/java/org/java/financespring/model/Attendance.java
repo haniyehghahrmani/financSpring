@@ -20,7 +20,7 @@ import java.time.LocalTime;
 
 @Entity(name = "AttendanceEntity")
 @Table(name = "attendances")
-public class Attendance {
+public class Attendance extends Base{
 
     @Id
     @SequenceGenerator(name = "attendanceSeq", sequenceName = "attendance_seq", allocationSize = 1)

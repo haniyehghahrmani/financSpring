@@ -23,7 +23,7 @@ import java.util.List;
 
 @Entity(name = "TransactionEntity")
 @Table(name = "transactions")
-public class Transaction {
+public class Transaction extends Base{
 
     @Id
     @SequenceGenerator(name = "transactionSeq", sequenceName = "transaction_seq", allocationSize = 1)

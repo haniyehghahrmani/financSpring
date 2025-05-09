@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "AccountTypeEntity")
 @Table(name = "account_types")
 @Cacheable
-public class AccountType {
+public class AccountType extends Base{
 
     @Id
     @SequenceGenerator(name = "accountTypeSeq", sequenceName = "account_type_seq", allocationSize = 1)

@@ -20,7 +20,7 @@ import java.time.LocalDate;
 
 @Entity(name = "BonusEntity")
 @Table(name = "bonuses")
-public class Bonus {
+public class Bonus extends Base{
 
     @Id
     @SequenceGenerator(name = "bonusSeq", sequenceName = "bonus_seq", allocationSize = 1)

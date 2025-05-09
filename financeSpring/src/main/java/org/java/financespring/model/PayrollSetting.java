@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 
 @Entity(name = "PayrollSettingEntity")
 @Table(name = "payroll_settings")
-public class PayrollSetting {
+public class PayrollSetting extends Base{
 
     @Id
     @SequenceGenerator(name = "payrollSettingSeq", sequenceName = "payroll_setting_seq", allocationSize = 1)

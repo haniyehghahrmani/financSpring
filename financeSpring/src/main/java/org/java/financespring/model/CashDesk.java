@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Entity(name = "CashDeskEntity")
 @Table(name = "cash_desks")
-public class CashDesk {
+public class CashDesk extends Base{
 
     @Id
     @SequenceGenerator(name = "cashDeskSeq", sequenceName = "cash_desk_seq", allocationSize = 1)

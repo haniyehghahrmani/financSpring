@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "BudgetStatusEntity")
 @Table(name = "budget_statuses")
 @Cacheable
-public class BudgetStatus {
+public class BudgetStatus extends Base{
 
     @Id
     @SequenceGenerator(name = "budgetStatusSeq", sequenceName = "budget_status_seq", allocationSize = 1)

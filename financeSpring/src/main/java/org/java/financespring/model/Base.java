@@ -26,12 +26,6 @@ public class Base {
     @JsonIgnore
     private Long version;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
-
     @JsonIgnore
     private boolean deleted = false;
 

@@ -22,7 +22,7 @@ import java.time.LocalDate;
 
 @Entity(name = "LeaveRequestEntity")
 @Table(name = "leave_requests")
-public class LeaveRequest {
+public class LeaveRequest extends Base{
 
     @Id
     @SequenceGenerator(name = "leaveRequestSeq", sequenceName = "leave_request_seq", allocationSize = 1)

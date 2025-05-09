@@ -20,7 +20,7 @@ import java.util.List;
 
 @Entity(name = "EmployeeEntity")
 @Table(name = "employees")
-public class Employee {
+public class Employee extends Base{
 
     @Id
     @SequenceGenerator(name = "employeeSeq", sequenceName = "employee_seq", allocationSize = 1)

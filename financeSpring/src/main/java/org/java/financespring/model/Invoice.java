@@ -18,7 +18,7 @@ import java.util.List;
 @Entity(name = "InvoiceEntity")
 @Table(name = "invoices")
 @Cacheable
-public class Invoice {
+public class Invoice extends Base{
 
     @Id
     @SequenceGenerator(name = "invoiceSeq", sequenceName = "invoice_seq", allocationSize = 1)

@@ -17,7 +17,7 @@ import java.util.Date;
 @Entity(name = "InvoiceItemEntity")
 @Table(name = "invoice_items")
 @Cacheable
-public class InvoiceItem {
+public class InvoiceItem extends Base{
 
     @Id
     @SequenceGenerator(name = "invoiceItemSeq", sequenceName = "invoice_item_seq", allocationSize = 1)

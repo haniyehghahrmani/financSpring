@@ -20,7 +20,7 @@ import java.time.LocalDate;
 
 @Entity(name = "DeductionEntity")
 @Table(name = "deductions")
-public class Deduction {
+public class Deduction extends Base{
 
     @Id
     @SequenceGenerator(name = "deductionSeq", sequenceName = "deduction_seq", allocationSize = 1)
