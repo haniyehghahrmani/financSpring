@@ -44,3 +44,6 @@ public class CardPayment extends PaymentMethod {
     @Column(name = "is_active")
     private Boolean isActive = true;
 }
+
+
+
