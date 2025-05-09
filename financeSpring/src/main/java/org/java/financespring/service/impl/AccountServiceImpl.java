@@ -5,8 +5,10 @@ import org.java.financespring.model.Account;
 import org.java.financespring.repository.AccountRepository;
 import org.java.financespring.service.AccountService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -45,6 +47,25 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findAccountByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Account Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
+    }
+
+    @Override
+    public Optional<Account> findAccountByIdAndDeletedFalse(Long id) throws NoContentException {
+        Optional<Account> optional = repository.findAccountByIdAndDeletedFalse(id);
+        if (optional.isPresent()) {
+            return optional;
+        } else {
+            throw new NoContentException("No Active Account Was Found with id : " + id);
+        }
     }
 
     @Override

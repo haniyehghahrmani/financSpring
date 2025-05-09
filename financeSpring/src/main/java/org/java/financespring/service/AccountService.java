@@ -5,6 +5,7 @@ import org.java.financespring.model.Account;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AccountService {
 
@@ -16,6 +17,8 @@ public interface AccountService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<Account> findAccountByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<Account> findAll();
 
