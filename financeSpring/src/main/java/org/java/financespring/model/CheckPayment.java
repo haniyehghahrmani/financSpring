@@ -19,6 +19,8 @@ import java.util.Date;
 public class CheckPayment extends PaymentMethod {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ch_id")
     private Long id;
 
     @Column(name = "ch_number", length = 50, nullable = false)
