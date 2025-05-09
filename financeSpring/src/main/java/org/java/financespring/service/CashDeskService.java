@@ -1,4 +1,4 @@
-package org.java.financespring.service.impl;
+package org.java.financespring.service;
 
 import org.java.financespring.model.CashDesk;
 

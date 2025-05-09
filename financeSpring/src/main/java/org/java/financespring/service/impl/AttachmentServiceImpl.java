@@ -62,5 +62,4 @@ public class AttachmentServiceImpl implements AttachmentService {
     public Attachment findByFileName(String fileName) {
         return repository.findByFileName(fileName).orElse(null);
     }
-
 }

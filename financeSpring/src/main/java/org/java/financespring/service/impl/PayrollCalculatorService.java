@@ -1,7 +1,6 @@
-package org.java.financespring.service;
+package org.java.financespring.service.impl;
 
 import org.java.financespring.model.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
