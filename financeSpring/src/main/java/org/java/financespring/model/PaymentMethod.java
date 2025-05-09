@@ -23,17 +23,17 @@ import java.time.LocalTime;
 @MappedSuperclass
 public class PaymentMethod {
 
-    @Column(name = "p_amount", precision = 18, scale = 2, nullable = false)
+    @Column(name = "pm_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal amount;
 
-    @Column(name = "p_date", nullable = false)
+    @Column(name = "pm_date", nullable = false)
     @PastOrPresent(message = "Invalid Payment Method Date Time")
     @NotNull(message = "payment method date time should not be null")
     private LocalDate date;
 
-    @Column(name = "p_time", nullable = false)
+    @Column(name = "pm_time", nullable = false)
     @PastOrPresent(message = "Invalid  Time")
     @NotNull(message = "Time should not be null")
     private LocalTime time;
@@ -44,16 +44,16 @@ public class PaymentMethod {
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Attachment paymentMethodDoc;
 
-    @Column(name = "p_description", columnDefinition = "NVARCHAR2(200)")
+    @Column(name = "pm_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
     @Size(min = 3, max = 200, message = "Description must be between 3 and 200 characters")
 //    @NotBlank(message = "Should Not Be Null")
     private String description;
 
-    @Column(name = "p_created_date", nullable = false, updatable = false)
+    @Column(name = "pm_created_date", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "p_last_updated")
+    @Column(name = "pm_last_updated")
     private LocalDateTime updatedAt;
 
     @PrePersist
@@ -73,4 +73,7 @@ public class PaymentMethod {
     public void setFaDate(String faDate) {
         this.date = LocalDate.from(PersianDate.parse(faDate).toGregorian().atStartOfDay());
     }
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 }

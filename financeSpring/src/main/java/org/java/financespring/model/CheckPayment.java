@@ -26,13 +26,16 @@ public class CheckPayment extends PaymentMethod {
     @Size(max = 50, message = "Check number must be at most 50 characters")
     private String chequeNumber;
 
-    @Column(name = "b_name", length = 100, nullable = false)
+    @Column(name = "ch_b_name", length = 100, nullable = false)
     @NotBlank(message = "Bank name is required")
     @Size(max = 100, message = "Bank name must be at most 100 characters")
     private String bankName;
 
-    @Column(name = "issue_date", nullable = false)
+    @Column(name = "ch_issue_date", nullable = false)
     @Temporal(TemporalType.DATE)
     @NotNull(message = "Issue date is required")
     private Date issueDate;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 }

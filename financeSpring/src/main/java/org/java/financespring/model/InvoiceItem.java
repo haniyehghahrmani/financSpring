@@ -66,11 +66,13 @@ public class InvoiceItem {
     @PrePersist
     protected void onCreate() {
         this.createdDate = new Date();
-        this.lastUpdated = new Date();
     }
 
     @PreUpdate
     protected void onUpdate() {
         this.lastUpdated = new Date();
     }
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 }

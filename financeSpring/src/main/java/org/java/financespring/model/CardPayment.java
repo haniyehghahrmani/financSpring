@@ -17,27 +17,30 @@ public class CardPayment extends PaymentMethod {
     @Id
     private Long id;
 
-    @Column(name = "card_number", length = 20, nullable = false)
+    @Column(name = "cp-card_number", length = 20, nullable = false)
     @NotBlank
     @Size(max = 20)
     private String cardNumber;
 
-    @Column(name = "card_holder_name", length = 100, nullable = false)
+    @Column(name = "cp-card_holder_name", length = 100, nullable = false)
     @NotBlank
     @Size(max = 100)
     private String cardHolderName;
 
-    @Column(name = "expiry_date", length = 7, nullable = false)
+    @Column(name = "cp-expiry_date", length = 7, nullable = false)
     @NotBlank
     @Pattern(regexp = "^(0[1-9]|1[0-2])/\\d{4}$")
     private String expiryDate;
 
-    @Column(name = "cvv", length = 4, nullable = false)
+    @Column(name = "cp-cvv", length = 4, nullable = false)
     @NotBlank
     @Pattern(regexp = "^\\d{3,4}$")
     private String cvv;
 
-    @Column(name = "b_id", nullable = false)
+    @Column(name = "cp-b_id", nullable = false)
     @NotNull
     private Integer bankID;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 }

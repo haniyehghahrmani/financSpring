@@ -36,54 +36,54 @@ public class Invoice {
     @NotNull
     private Date invoiceDate;
 
-    @Column(name = "due_date", nullable = false)
+    @Column(name = "i_due_date", nullable = false)
     @Temporal(TemporalType.DATE)
     @NotNull
     private Date dueDate;
 
-    @Column(name = "total_amount", nullable = false, precision = 18, scale = 2)
+    @Column(name = "i_total_amount", nullable = false, precision = 18, scale = 2)
     @NotNull
     private BigDecimal totalAmount;
 
-    @Column(name = "paid_amount", precision = 18, scale = 2)
+    @Column(name = "i_paid_amount", precision = 18, scale = 2)
     private BigDecimal paidAmount;
 
-    @Column(name = "remaining_amount", precision = 18, scale = 2)
+    @Column(name = "i_remaining_amount", precision = 18, scale = 2)
     private BigDecimal remainingAmount;
 
-    @Column(name = "invoice_status", length = 50)
+    @Column(name = "i_status", length = 50)
     @Size(max = 50)
     private String invoiceStatus;
 
-    @Column(name = "customer_name", length = 100)
+    @Column(name = "i_customer_name", length = 100)
     @Size(max = 100)
     private String customerName;
 
-    @Column(name = "customer_address", length = 255)
+    @Column(name = "i_customer_address", length = 255)
     @Size(max = 255)
     private String customerAddress;
 
-    @Column(name = "customer_phone", length = 20)
+    @Column(name = "i_customer_phone", length = 20)
     @Size(max = 20)
     private String customerPhone;
 
-    @Column(name = "description", length = 500)
+    @Column(name = "i_description", length = 500)
     @Size(max = 500)
     private String description;
 
-    @Column(name = "account_id", nullable = false)
+    @Column(name = "i_account_id", nullable = false)
     @NotNull
     private Integer accountID;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "i_user_id", nullable = false)
     @NotNull
     private Integer userID;
 
-    @Column(name = "created_date", updatable = false)
+    @Column(name = "i_created_date", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    @Column(name = "last_updated")
+    @Column(name = "i_last_updated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
 
@@ -96,11 +96,13 @@ public class Invoice {
     @PrePersist
     protected void onCreate() {
         this.createdDate = new Date();
-        this.lastUpdated = new Date();
     }
 
     @PreUpdate
     protected void onUpdate() {
         this.lastUpdated = new Date();
     }
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 }

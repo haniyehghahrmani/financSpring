@@ -17,14 +17,17 @@ public class CashPayment extends PaymentMethod {
     @Id
     private Long id;
 
-    @Column(name = "received_by", length = 100, nullable = false)
+    @Column(name = "cap=received_by", length = 100, nullable = false)
     @NotBlank(message = "ReceivedBy is required")
     @Size(max = 100)
     private String receivedBy;
 
-    @Column(name = "location", length = 200)
+    @Column(name = "cap=location", length = 200)
     @Size(max = 200)
     private String location;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 }
 
 
