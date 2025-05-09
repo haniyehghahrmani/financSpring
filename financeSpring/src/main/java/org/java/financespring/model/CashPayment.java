@@ -24,3 +24,4 @@ public class CashPayment extends Payment {
     private String location;
 }
 
+
