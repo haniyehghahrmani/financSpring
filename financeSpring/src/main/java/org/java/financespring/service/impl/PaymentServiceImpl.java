@@ -5,6 +5,7 @@ import org.java.financespring.model.Payment;
 import org.java.financespring.repository.PaymentRepository;
 import org.java.financespring.service.PaymentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,6 +41,15 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findPaymentByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Payment Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
     }
 
     @Override

@@ -5,6 +5,7 @@ import org.java.financespring.model.CashPayment;
 import org.java.financespring.repository.CashPaymentRepository;
 import org.java.financespring.service.CashPaymentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,6 +40,15 @@ public class CashPaymentServiceImpl implements CashPaymentService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findCashPaymentByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Cash Payment Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
     }
 
     @Override

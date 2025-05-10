@@ -5,6 +5,7 @@ import org.java.financespring.model.Bank;
 import org.java.financespring.repository.BankRepository;
 import org.java.financespring.service.BankService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -45,6 +46,15 @@ public class BankServiceImpl implements BankService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findBankByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Bank Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
     }
 
     @Override

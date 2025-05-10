@@ -5,6 +5,7 @@ import org.java.financespring.model.CheckPayment;
 import org.java.financespring.repository.CheckPaymentRepository;
 import org.java.financespring.service.CheckPaymentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,6 +40,15 @@ public class CheckPaymentServiceImpl implements CheckPaymentService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findCheckPaymentByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Check Payment Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
     }
 
     @Override
