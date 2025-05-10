@@ -5,12 +5,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface CheckPaymentRepository extends JpaRepository<CheckPayment, Long> {
+
+    @Modifying
+    @Query("update CheckPaymentEntity oo set oo.deleted=true where oo.id=:id")
+    void logicalRemove(Long id);
+
+    Optional<CheckPayment> findCheckPaymentByIdAndDeletedFalse(Long id);
 
 }

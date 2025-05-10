@@ -5,6 +5,7 @@ import org.java.financespring.model.Invoice;
 import org.java.financespring.repository.InvoiceRepository;
 import org.java.financespring.service.InvoiceService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -52,6 +53,15 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findInvoiceByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Invoice Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
     }
 
     @Override

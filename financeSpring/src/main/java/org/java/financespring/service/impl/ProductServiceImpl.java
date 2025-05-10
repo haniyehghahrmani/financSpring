@@ -5,6 +5,7 @@ import org.java.financespring.model.Product;
 import org.java.financespring.repository.ProductRepository;
 import org.java.financespring.service.ProductService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,6 +42,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findProductByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Product Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
     }
 
     @Override

@@ -5,6 +5,7 @@ import org.java.financespring.model.CashDesk;
 import org.java.financespring.repository.CashDeskRepository;
 import org.java.financespring.service.CashDeskService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,6 +42,15 @@ public class CashDeskServiceImpl implements CashDeskService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findCashDeskByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Cash Desk Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
     }
 
     @Override

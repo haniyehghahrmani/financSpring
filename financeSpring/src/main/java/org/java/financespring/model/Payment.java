@@ -22,7 +22,7 @@ public class Payment extends Base{
     @SequenceGenerator(name = "paymentSeq", sequenceName = "payment_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paymentSeq")
     @Column(name = "p_id")
-    private Long paymentID;
+    private Long id;
 
     @Column(name = "p_amount", nullable = false, precision = 18, scale = 2)
     @NotNull(message = "Amount is required")
