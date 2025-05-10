@@ -5,6 +5,7 @@ import org.java.financespring.model.PayrollSetting;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PayrollSettingService {
 
@@ -16,6 +17,8 @@ public interface PayrollSettingService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<PayrollSetting> findPayrollSettingByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<PayrollSetting> findAll();
 

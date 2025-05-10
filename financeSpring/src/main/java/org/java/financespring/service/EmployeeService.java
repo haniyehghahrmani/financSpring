@@ -5,6 +5,7 @@ import org.java.financespring.model.Employee;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeService {
 
@@ -16,6 +17,8 @@ public interface EmployeeService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<Employee> findEmployeeByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<Employee> findAll();
 

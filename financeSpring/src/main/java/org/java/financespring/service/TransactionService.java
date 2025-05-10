@@ -5,6 +5,7 @@ import org.java.financespring.model.Transaction;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TransactionService {
 
@@ -16,6 +17,8 @@ public interface TransactionService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<Transaction> findTransactionByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<Transaction> findAll();
 

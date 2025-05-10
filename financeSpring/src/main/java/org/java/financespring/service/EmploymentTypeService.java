@@ -5,6 +5,7 @@ import org.java.financespring.model.EmploymentType;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EmploymentTypeService {
 
@@ -16,6 +17,8 @@ public interface EmploymentTypeService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<EmploymentType> findEmploymentTypeByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<EmploymentType> findAll();
 

@@ -1,5 +1,6 @@
 package org.java.financespring.service.impl;
 
+import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.BudgetStatus;
 import org.java.financespring.repository.BudgetStatusRepository;
@@ -7,6 +8,7 @@ import org.java.financespring.service.BudgetStatusService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BudgetStatusServiceImpl implements BudgetStatusService {
@@ -36,6 +38,25 @@ public class BudgetStatusServiceImpl implements BudgetStatusService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findBudgetStatusByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Budget Status Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
+    }
+
+    @Override
+    public Optional<BudgetStatus> findBudgetStatusByIdAndDeletedFalse(Long id) throws NoContentException {
+        Optional<BudgetStatus> optional = repository.findBudgetStatusByIdAndDeletedFalse(id);
+        if (optional.isPresent()) {
+            return optional;
+        } else {
+            throw new NoContentException("No Active Budget Status Was Found with id : " + id);
+        }
     }
 
     @Override

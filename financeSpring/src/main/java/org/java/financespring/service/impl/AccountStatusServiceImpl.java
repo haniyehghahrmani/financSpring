@@ -1,6 +1,7 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
+import org.java.financespring.model.Account;
 import org.java.financespring.model.AccountStatus;
 import org.java.financespring.repository.AccountStatusRepository;
 import org.java.financespring.service.AccountStatusService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountStatusServiceImpl implements AccountStatusService {
@@ -43,9 +45,19 @@ public class AccountStatusServiceImpl implements AccountStatusService {
     @Transactional
     public void logicalRemove(Long id) throws NoContentException {
         repository.findAccountStatusByIdAndDeletedFalse(id).orElseThrow(
-                () -> new NoContentException("No Active Account Was Found with id " + id + " To Remove !")
+                () -> new NoContentException("No Active Account Status Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+    }
+
+    @Override
+    public Optional<AccountStatus> findAccountStatusByIdAndDeletedFalse(Long id) throws NoContentException {
+        Optional<AccountStatus> optional = repository.findAccountStatusByIdAndDeletedFalse(id);
+        if (optional.isPresent()) {
+            return optional;
+        } else {
+            throw new NoContentException("No Active Account Status Was Found with id : " + id);
+        }
     }
 
     @Override

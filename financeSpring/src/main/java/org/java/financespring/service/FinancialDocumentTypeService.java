@@ -5,6 +5,7 @@ import org.java.financespring.model.FinancialDocumentType;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FinancialDocumentTypeService {
 
@@ -16,6 +17,8 @@ public interface FinancialDocumentTypeService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<FinancialDocumentType> findFinancialDocumentTypeByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<FinancialDocumentType> findAll();
 

@@ -5,6 +5,7 @@ import org.java.financespring.model.LeaveRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LeaveRequestService {
 
@@ -16,6 +17,8 @@ public interface LeaveRequestService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<LeaveRequest> findLeaveRequestByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<LeaveRequest> findAll();
 

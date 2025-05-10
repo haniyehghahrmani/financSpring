@@ -5,6 +5,7 @@ import org.java.financespring.model.SalaryStructure;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SalaryStructureService {
 
@@ -16,6 +17,8 @@ public interface SalaryStructureService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<SalaryStructure> findSalaryStructureByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<SalaryStructure> findAll();
 

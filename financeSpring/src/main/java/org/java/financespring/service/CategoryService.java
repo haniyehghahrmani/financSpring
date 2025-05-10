@@ -5,6 +5,7 @@ import org.java.financespring.model.Category;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoryService {
 
@@ -16,6 +17,8 @@ public interface CategoryService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<Category> findCategoryByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<Category> findAll();
 

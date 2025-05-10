@@ -1,5 +1,6 @@
 package org.java.financespring.service.impl;
 
+import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Bonus;
 import org.java.financespring.repository.BonusRepository;
@@ -7,6 +8,7 @@ import org.java.financespring.service.BonusService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BonusServiceImpl implements BonusService {
@@ -41,6 +43,25 @@ public class BonusServiceImpl implements BonusService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findBonusByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Bonus Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
+    }
+
+    @Override
+    public Optional<Bonus> findBonusByIdAndDeletedFalse(Long id) throws NoContentException {
+        Optional<Bonus> optional = repository.findBonusByIdAndDeletedFalse(id);
+        if (optional.isPresent()) {
+            return optional;
+        } else {
+            throw new NoContentException("No Active Bonus Was Found with id : " + id);
+        }
     }
 
     @Override

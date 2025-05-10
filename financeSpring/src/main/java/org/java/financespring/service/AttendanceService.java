@@ -5,6 +5,7 @@ import org.java.financespring.model.Attendance;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AttendanceService {
 
@@ -16,6 +17,8 @@ public interface AttendanceService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<Attendance> findAttendanceByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<Attendance> findAll();
 

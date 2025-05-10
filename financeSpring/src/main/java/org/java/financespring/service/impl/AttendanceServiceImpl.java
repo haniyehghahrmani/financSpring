@@ -1,12 +1,15 @@
 package org.java.financespring.service.impl;
 
+import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
+import org.java.financespring.model.Attachment;
 import org.java.financespring.model.Attendance;
 import org.java.financespring.repository.AttendanceRepository;
 import org.java.financespring.service.AttendanceService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
@@ -44,6 +47,25 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findAttendanceByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Attendance Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
+    }
+
+    @Override
+    public Optional<Attendance> findAttendanceByIdAndDeletedFalse(Long id) throws NoContentException {
+        Optional<Attendance> optional = repository.findAttendanceByIdAndDeletedFalse(id);
+        if (optional.isPresent()) {
+            return optional;
+        } else {
+            throw new NoContentException("No Active Attendance Was Found with id : " + id);
+        }
     }
 
     @Override

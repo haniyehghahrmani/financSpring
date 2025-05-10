@@ -5,6 +5,7 @@ import org.java.financespring.model.Role;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RoleService {
 
@@ -16,6 +17,8 @@ public interface RoleService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<Role> findRoleByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<Role> findAll();
 

@@ -5,6 +5,7 @@ import org.java.financespring.model.BudgetStatus;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BudgetStatusService {
 
@@ -16,6 +17,8 @@ public interface BudgetStatusService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<BudgetStatus> findBudgetStatusByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<BudgetStatus> findAll();
 

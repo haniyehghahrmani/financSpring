@@ -5,6 +5,7 @@ import org.java.financespring.model.Bonus;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BonusService {
 
@@ -16,6 +17,8 @@ public interface BonusService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<Bonus> findBonusByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<Bonus> findAll();
 

@@ -19,7 +19,7 @@ public interface AccountStatusService {
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
 
-    Optional<Account> findAccountByIdAndDeletedFalse(Long id) throws NoContentException;
+    Optional<AccountStatus> findAccountStatusByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<AccountStatus> findAll();
 

@@ -5,6 +5,7 @@ import org.java.financespring.model.Deduction;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DeductionService {
 
@@ -16,6 +17,8 @@ public interface DeductionService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<Deduction> findDeductionByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<Deduction> findAll();
 

@@ -1,5 +1,6 @@
 package org.java.financespring.service.impl;
 
+import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Budget;
 import org.java.financespring.repository.BudgetRepository;
@@ -7,6 +8,7 @@ import org.java.financespring.service.BudgetService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BudgetServiceImpl implements BudgetService {
@@ -45,6 +47,25 @@ public class BudgetServiceImpl implements BudgetService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findBudgetByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Budget Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
+    }
+
+    @Override
+    public Optional<Budget> findBudgetByIdAndDeletedFalse(Long id) throws NoContentException {
+        Optional<Budget> optional = repository.findBudgetByIdAndDeletedFalse(id);
+        if (optional.isPresent()) {
+            return optional;
+        } else {
+            throw new NoContentException("No Active Attachment Was Found with id : " + id);
+        }
     }
 
     @Override

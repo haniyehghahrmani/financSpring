@@ -5,6 +5,7 @@ import org.java.financespring.model.LeaveType;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LeaveTypeService {
 
@@ -16,6 +17,8 @@ public interface LeaveTypeService {
 
     @Transactional
     void logicalRemove(Long id) throws NoContentException;
+
+    Optional<LeaveType> findLeaveTypeByIdAndDeletedFalse(Long id) throws NoContentException;
 
     List<LeaveType> findAll();
 
