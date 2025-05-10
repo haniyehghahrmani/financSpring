@@ -2,6 +2,7 @@ package org.java.financespring.service;
 
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.CashDesk;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +13,9 @@ public interface CashDeskService {
     CashDesk edit(Long id, CashDesk cashDesk) throws NoContentException;
 
     void remove(Long id);
+
+    @Transactional
+    void logicalRemove(Long id) throws NoContentException;
 
     List<CashDesk> findAll();
 
