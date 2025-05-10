@@ -11,7 +11,7 @@ public interface TransactionTypeService {
 
     TransactionType save(TransactionType transactionType);
 
-    TransactionType edit(Long id, TransactionType transactionType);
+    TransactionType edit(Long id, TransactionType transactionType) throws NoContentException;
 
     void remove(Long id);
 
@@ -22,5 +22,5 @@ public interface TransactionTypeService {
 
     List<TransactionType> findAll();
 
-    TransactionType findById(Long id);
+    TransactionType findById(Long id) throws NoContentException;
 }

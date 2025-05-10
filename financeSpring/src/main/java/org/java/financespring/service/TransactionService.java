@@ -11,7 +11,7 @@ public interface TransactionService {
 
     Transaction save(Transaction transaction);
 
-    Transaction edit(Long id, Transaction transaction);
+    Transaction edit(Long id, Transaction transaction) throws NoContentException;
 
     void remove(Long id);
 
@@ -22,5 +22,5 @@ public interface TransactionService {
 
     List<Transaction> findAll();
 
-    Transaction findById(Long id);
+    Transaction findById(Long id) throws NoContentException;
 }

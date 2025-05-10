@@ -77,6 +77,9 @@ public class Transaction extends Base{
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(name = "t_is_active")
+    private Boolean isActive = true;
+
     @Column(name = "t_created_date", nullable = false, updatable = false)
     private LocalDateTime createdDate;
 

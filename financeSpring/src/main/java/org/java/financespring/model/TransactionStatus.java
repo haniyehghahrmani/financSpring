@@ -30,4 +30,7 @@ public class TransactionStatus extends Base{
     @NotBlank(message = "Transaction Status name should not be blank")
     @Size(min = 3, max = 200, message = "Transaction Status name must be between 3 and 200 characters")
     private String name;
+
+    @Column(name = "t_is_active")
+    private Boolean isActive = true;
 }
