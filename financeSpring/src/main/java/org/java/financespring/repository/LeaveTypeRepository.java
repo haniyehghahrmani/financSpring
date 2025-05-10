@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface LeaveTypeRepository extends JpaRepository<LeaveType, Long> {
 
     @Modifying
     @Query("update LeaveTypeEntity oo set oo.deleted=true where oo.id=:id")
     void logicalRemove(Long id);
+
+    Optional<LeaveType> findLeaveTypeByIdAndDeletedFalse(Long id);
 }

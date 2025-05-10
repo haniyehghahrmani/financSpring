@@ -5,6 +5,7 @@ import org.java.financespring.model.AccountStatus;
 import org.java.financespring.repository.AccountStatusRepository;
 import org.java.financespring.service.AccountStatusService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,6 +37,15 @@ public class AccountStatusServiceImpl implements AccountStatusService {
     @Override
     public void remove(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findAccountStatusByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active Account Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
     }
 
     @Override

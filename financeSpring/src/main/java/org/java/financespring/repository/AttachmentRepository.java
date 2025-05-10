@@ -16,4 +16,6 @@ public interface AttachmentRepository extends JpaRepository<Attachment, Long> {
     @Modifying
     @Query("update AttachmentEntity oo set oo.deleted=true where oo.id=:id")
     void logicalRemove(Long id);
+
+    Optional<Attachment> findAttachmentByIdAndDeletedFalse(Long id);
 }
