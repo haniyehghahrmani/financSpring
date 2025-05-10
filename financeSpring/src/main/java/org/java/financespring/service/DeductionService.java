@@ -11,7 +11,7 @@ public interface DeductionService {
 
     Deduction save(Deduction deduction);
 
-    Deduction edit(Long id, Deduction deduction);
+    Deduction edit(Long id, Deduction deduction) throws NoContentException;
 
     void remove(Long id);
 

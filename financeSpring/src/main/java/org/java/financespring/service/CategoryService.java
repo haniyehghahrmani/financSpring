@@ -11,7 +11,7 @@ public interface CategoryService {
 
     Category save(Category category);
 
-    Category edit(Long id, Category category);
+    Category edit(Long id, Category category) throws NoContentException;
 
     void remove(Long id);
 

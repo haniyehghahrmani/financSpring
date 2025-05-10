@@ -11,7 +11,7 @@ public interface EmployeeService {
 
     Employee save(Employee employee);
 
-    Employee edit(Long id, Employee employee);
+    Employee edit(Long id, Employee employee) throws NoContentException;
 
     void remove(Long id);
 
