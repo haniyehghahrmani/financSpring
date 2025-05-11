@@ -11,7 +11,7 @@ public interface EmploymentTypeService {
 
     EmploymentType save(EmploymentType employmentType);
 
-    EmploymentType edit(Long id, EmploymentType employmentType);
+    EmploymentType edit(Long id, EmploymentType employmentType) throws NoContentException;
 
     void remove(Long id);
 
