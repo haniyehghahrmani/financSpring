@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class LeaveRequestServiceImpl implements LeaveRequestService {
+    private int a;
     
     private final LeaveRequestRepository repository;
 

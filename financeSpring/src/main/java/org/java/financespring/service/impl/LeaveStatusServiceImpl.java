@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class LeaveStatusServiceImpl implements LeaveStatusService {
+    private int a;
     
     private final LeaveStatusRepository repository;
 

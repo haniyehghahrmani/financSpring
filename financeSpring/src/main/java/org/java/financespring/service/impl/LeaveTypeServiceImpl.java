@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class LeaveTypeServiceImpl implements LeaveTypeService {
+    private int a;
 
     private final LeaveTypeRepository repository;
 
