@@ -11,7 +11,7 @@ public interface PayrollSettingService {
 
     PayrollSetting save(PayrollSetting payrollSetting);
 
-    PayrollSetting edit(Long id, PayrollSetting payrollSetting);
+    PayrollSetting edit(Long id, PayrollSetting payrollSetting) throws NoContentException;
 
     void remove(Long id);
 

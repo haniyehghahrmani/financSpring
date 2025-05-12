@@ -11,7 +11,7 @@ public interface LeaveStatusService {
 
     LeaveStatus save(LeaveStatus leaveStatus);
 
-    LeaveStatus edit(Long id, LeaveStatus leaveStatus);
+    LeaveStatus edit(Long id, LeaveStatus leaveStatus) throws NoContentException;
 
     void remove(Long id);
 

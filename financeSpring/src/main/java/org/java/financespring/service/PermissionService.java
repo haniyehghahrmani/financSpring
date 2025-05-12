@@ -11,7 +11,7 @@ public interface PermissionService {
 
     Permission save(Permission permission);
 
-    Permission edit(Long id, Permission permission);
+    Permission edit(Long id, Permission permission) throws NoContentException;
 
     void remove(Long id);
 

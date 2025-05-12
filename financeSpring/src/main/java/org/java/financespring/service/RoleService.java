@@ -11,7 +11,7 @@ public interface RoleService {
 
     Role save(Role role);
 
-    Role edit(Long id, Role role);
+    Role edit(Long id, Role role) throws NoContentException;
 
     void remove(Long id);
 

@@ -11,7 +11,7 @@ public interface PayrollService {
 
     Payroll save(Payroll payroll);
 
-    Payroll edit(Long id, Payroll payroll);
+    Payroll edit(Long id, Payroll payroll) throws NoContentException;
 
     void remove(Long id);
 

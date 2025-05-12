@@ -11,7 +11,7 @@ public interface SalaryStructureService {
 
     SalaryStructure save(SalaryStructure salaryStructure);
 
-    SalaryStructure edit(Long id, SalaryStructure salaryStructure);
+    SalaryStructure edit(Long id, SalaryStructure salaryStructure) throws NoContentException;
 
     void remove(Long id);
 

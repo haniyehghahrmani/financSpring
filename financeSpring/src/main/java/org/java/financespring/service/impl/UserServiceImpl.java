@@ -1,0 +1,80 @@
+package org.java.financespring.service.impl;
+
+import org.java.financespring.exception.NoContentException;
+import org.java.financespring.model.User;
+import org.java.financespring.repository.UserRepository;
+import org.java.financespring.service.UserService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    private final UserRepository repository;
+
+    public UserServiceImpl(UserRepository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public User save(User user) {
+        return repository.save(user);
+    }
+
+    @Override
+    public User edit(Long id, User user) throws NoContentException {
+        User existingUser = repository.findById(id)
+                .orElseThrow(
+                        () -> new NoContentException("No Active User Was Found with id " + id + " To Update!")
+                );
+        existingUser.setUsername(user.getUsername());
+        existingUser.setPassword(user.getPassword());
+        existingUser.setStatus(user.isStatus());
+        existingUser.setRole(user.getRole());
+        existingUser.setPerson(user.getPerson());
+
+        return repository.saveAndFlush(existingUser);
+    }
+
+    @Override
+    public void remove(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void logicalRemove(Long id) throws NoContentException {
+        repository.findUserByIdAndDeletedFalse(id).orElseThrow(
+                () -> new NoContentException("No Active User Was Found with id " + id + " To Remove !")
+        );
+        repository.logicalRemove(id);
+    }
+
+    @Override
+    public Optional<User> findUserByIdAndDeletedFalse(Long id) throws NoContentException {
+        Optional<User> optional = repository.findUserByIdAndDeletedFalse(id);
+        if (optional.isPresent()) {
+            return optional;
+        } else {
+            throw new NoContentException("No Active User Was Found with id : " + id);
+        }
+    }
+
+    @Override
+    public List<User> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public User findById(Long id) {
+        try {
+            return repository.findById(id)
+                    .orElseThrow(() -> new NoContentException("No user found with id " + id));
+        } catch (NoContentException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

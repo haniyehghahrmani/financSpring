@@ -11,7 +11,7 @@ public interface LeaveTypeService {
 
     LeaveType save(LeaveType leaveType);
 
-    LeaveType edit(Long id, LeaveType leaveType);
+    LeaveType edit(Long id, LeaveType leaveType) throws NoContentException;
 
     void remove(Long id);
 
