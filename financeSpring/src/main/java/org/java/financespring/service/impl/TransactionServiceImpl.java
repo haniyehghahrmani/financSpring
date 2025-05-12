@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -54,6 +55,11 @@ public class TransactionServiceImpl implements TransactionService {
                 .orElseThrow(() -> new NoContentException("No Active Transaction Found with id " + id + " To Remove!"));
         transaction.setIsActive(false);
         repository.save(transaction);
+    }
+
+    @Override
+    public Optional<Transaction> findTransactionByIdAndDeletedFalse(Long id) throws NoContentException {
+        return Optional.empty();
     }
 
     @Override

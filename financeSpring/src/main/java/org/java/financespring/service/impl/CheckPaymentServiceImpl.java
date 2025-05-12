@@ -31,7 +31,7 @@ public class CheckPaymentServiceImpl implements CheckPaymentService {
                 );
         existingCheckPayment.setChequeNumber(checkPayment.getChequeNumber());
         existingCheckPayment.setIssueDate(checkPayment.getIssueDate());
-        existingCheckPayment.setAccount(checkPayment.getAccount());
+//        existingCheckPayment.setAccount(checkPayment.getAccount());
         existingCheckPayment.setIsActive(checkPayment.getIsActive());
 
         return repository.saveAndFlush(existingCheckPayment);

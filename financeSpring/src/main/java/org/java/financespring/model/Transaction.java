@@ -86,8 +86,8 @@ public class Transaction extends Base{
     @Column(name = "t_last_updated")
     private LocalDateTime lastUpdated;
 
-    @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Payment> payments;
+//    @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<Payment> payments;
 
     @PrePersist
     protected void onCreate() {

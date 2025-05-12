@@ -34,8 +34,8 @@ public class Payment extends Base{
     @NotNull(message = "Payment date is required")
     private Date paymentDate;
 
-    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private PaymentStatus paymentStatus;
+//    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private PaymentStatus paymentStatus;
 
     @Column(name = "p_description", length = 500)
     @Size(max = 500)

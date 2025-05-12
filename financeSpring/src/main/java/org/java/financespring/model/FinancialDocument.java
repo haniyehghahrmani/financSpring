@@ -30,8 +30,8 @@ public class FinancialDocument extends Base{
     @Column(name = "f_id")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "financialDocument", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Attachment attachment;
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "financialDocument", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    private Attachment attachment;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "document_type_id", nullable = false)
@@ -84,8 +84,8 @@ public class FinancialDocument extends Base{
     @Column(name = "f_last_updated")
     private LocalDateTime lastUpdated;
 
-    @OneToMany(mappedBy = "financialDocument", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Transaction> transactions;
+//    @OneToMany(mappedBy = "financialDocument", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<Transaction> transactions;
 
     @Transient
     public BigDecimal getRemainingAmount() {

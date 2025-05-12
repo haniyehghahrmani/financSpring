@@ -54,10 +54,10 @@ public class Person extends Base {
     @Transient
     private String faBirthdate;
 
-    @Column(name = "p_gender")
-    @Enumerated(EnumType.ORDINAL)
-    @NotNull(message = "Should Not Be Null")
-    private Gender gender;
+//    @Column(name = "p_gender")
+//    @Enumerated(EnumType.ORDINAL)
+//    @NotNull(message = "Should Not Be Null")
+//    private Gender gender;
 
     public String getFaBirthdate() {
         if (birthdate != null) {

@@ -30,7 +30,7 @@ public class FinancialDocumentServiceImpl implements FinancialDocumentService {
                 .orElseThrow(
                         () -> new NoContentException("No Active FinancialDocument Was Found with id " + id + " To Update!")
                 );
-        existingFinancialDocument.setAttachment(financialDocument.getAttachment());
+//        existingFinancialDocument.setAttachment(financialDocument.getAttachment());
         existingFinancialDocument.setDocumentType(financialDocument.getDocumentType());
         existingFinancialDocument.setDocumentNumber(financialDocument.getDocumentNumber());
         existingFinancialDocument.setDocumentDate(financialDocument.getDocumentDate());

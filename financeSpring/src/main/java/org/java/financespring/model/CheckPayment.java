@@ -28,8 +28,8 @@ public class CheckPayment extends PaymentMethod {
     @Size(max = 50, message = "Check number must be at most 50 characters")
     private String chequeNumber;
 
-    @OneToMany(mappedBy = "check_payment", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Account account;
+//    @OneToMany(mappedBy = "check_payment", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private Account account;
 
     @Column(name = "c_issue_date", nullable = false)
     @Temporal(TemporalType.DATE)

@@ -44,7 +44,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         existingInvoice.setAccountID(invoice.getAccountID());
         existingInvoice.setUserID(invoice.getUserID());
         existingInvoice.setInvoiceItems(invoice.getInvoiceItems());
-        existingInvoice.setTransactions(invoice.getTransactions());
+//        existingInvoice.setTransactions(invoice.getTransactions());
         existingInvoice.setIsActive(invoice.getIsActive());
 
         return repository.saveAndFlush(existingInvoice);

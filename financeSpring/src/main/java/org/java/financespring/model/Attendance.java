@@ -61,13 +61,13 @@ public class Attendance extends Base{
 
     //میزان اضافه‌کاری
     @Column(name = "a_overtime_hours", nullable = false)
-    @DecimalMin(value = "0.0", inclusive = true, message = "Overtime hours must be non-negative")
-    @Digits(integer = 4, fraction = 2, message = "Overtime hours format is invalid")
+//    @DecimalMin(value = "0.0", inclusive = true, message = "Overtime hours must be non-negative")
+//    @Digits(integer = 4, fraction = 2, message = "Overtime hours format is invalid")
     private double overtimeHours;
 
     @Column(name = "a_delay_minutes", nullable = false)
-    @DecimalMin(value = "0.0", inclusive = true, message = "Delay minutes must be non-negative")
-    @Digits(integer = 4, fraction = 2, message = "Delay minutes format is invalid")
+//    @DecimalMin(value = "0.0", inclusive = true, message = "Delay minutes must be non-negative")
+//    @Digits(integer = 4, fraction = 2, message = "Delay minutes format is invalid")
     private double delayMinutes;
 
     @Column(name = "a_note", length = 1000)
