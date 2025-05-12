@@ -2,6 +2,10 @@ package org.java.financespring.controller;
 
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
+import org.java.financespring.exception.NoContentException;
+import org.java.financespring.model.User;
+import org.java.financespring.service.PersonService;
+import org.java.financespring.service.RoleService;
 import org.java.financespring.service.UserService;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -20,23 +24,14 @@ public class UserController {
 
     private final UserService service;
 
-//    private final PersonService personService;
+    private final PersonService personService;
 
-//    private final RoleService roleService;
+    private final RoleService roleService;
 
     public UserController(UserService service, PersonService personService, RoleService roleService) {
         this.service = service;
         this.personService = personService;
         this.roleService = roleService;
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String userForm(Model model) {
-        model.addAttribute("userList", service.findUserByDeletedFalse());
-        model.addAttribute("user", new User());
-        model.addAttribute("person", personService.findAll());
-        model.addAttribute("role", roleService.findAll());
-        return "user";
     }
 
     @ResponseBody
@@ -68,14 +63,14 @@ public class UserController {
                             .toList().toString()
             );
         }
-        return service.update(user);
+        return service.edit(user.getId(),user);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ResponseBody
     public User remove(@PathVariable Long id) throws NoContentException {
-        return service.logicalRemoveWithReturn(id);
+        return service.logicalRemove(id);
     }
 
     @GetMapping("/{id}")
@@ -89,14 +84,6 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public List<User> findAll(Model model) {
-        return service.findUserByDeletedFalse();
+        return service.findAll();
     }
-
-    @GetMapping("/findByUsername")
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public Optional<User> findByUsername(@RequestParam String username) throws NoContentException {
-        return service.findUserByUsernameAndDeletedFalse(username);
-    }
-
 }

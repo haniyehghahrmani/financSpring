@@ -46,11 +46,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public User logicalRemove(Long id) throws NoContentException {
         repository.findUserByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active User Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override
