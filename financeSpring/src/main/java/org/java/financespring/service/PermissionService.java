@@ -16,7 +16,7 @@ public interface PermissionService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    Permission logicalRemove(Long id) throws NoContentException;
 
     Optional<Permission> findPermissionByIdAndDeletedFalse(Long id) throws NoContentException;
 

@@ -44,11 +44,12 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public Permission logicalRemove(Long id) throws NoContentException {
         repository.findPermissionByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Permission Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

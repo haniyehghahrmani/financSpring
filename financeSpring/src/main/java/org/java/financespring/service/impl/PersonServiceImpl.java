@@ -46,11 +46,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public Person logicalRemove(Long id) throws NoContentException {
         repository.findPersonByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Person Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

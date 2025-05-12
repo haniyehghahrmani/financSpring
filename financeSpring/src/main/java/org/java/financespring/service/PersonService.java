@@ -16,7 +16,7 @@ public interface PersonService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    Person logicalRemove(Long id) throws NoContentException;
 
     Optional<Person> findPersonByIdAndDeletedFalse(Long id) throws NoContentException;
 
