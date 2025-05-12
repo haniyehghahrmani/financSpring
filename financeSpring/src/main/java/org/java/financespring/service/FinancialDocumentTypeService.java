@@ -11,7 +11,7 @@ public interface FinancialDocumentTypeService {
 
     FinancialDocumentType save(FinancialDocumentType financialDocumentType);
 
-    FinancialDocumentType edit(Long id, FinancialDocumentType financialDocumentType);
+    FinancialDocumentType edit(Long id, FinancialDocumentType financialDocumentType) throws NoContentException;
 
     void remove(Long id);
 

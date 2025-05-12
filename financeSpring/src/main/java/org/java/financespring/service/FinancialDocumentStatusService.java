@@ -11,7 +11,7 @@ public interface FinancialDocumentStatusService {
 
     FinancialDocumentStatus save(FinancialDocumentStatus financialDocumentStatus);
 
-    FinancialDocumentStatus edit(Long id, FinancialDocumentStatus financialDocumentStatus);
+    FinancialDocumentStatus edit(Long id, FinancialDocumentStatus financialDocumentStatus) throws NoContentException;
 
     void remove(Long id);
 

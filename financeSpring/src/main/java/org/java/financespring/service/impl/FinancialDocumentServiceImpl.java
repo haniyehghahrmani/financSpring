@@ -26,22 +26,21 @@ public class FinancialDocumentServiceImpl implements FinancialDocumentService {
 
     @Override
     public FinancialDocument edit(Long id, FinancialDocument financialDocument) throws NoContentException {
-        FinancialDocument existingAccount = repository.findById(id)
+        FinancialDocument existingFinancialDocument = repository.findById(id)
                 .orElseThrow(
                         () -> new NoContentException("No Active FinancialDocument Was Found with id " + id + " To Update!")
                 );
-//        existingAccount.setAccountName(financialDocument.getAccountName());
-//        existingAccount.setAccountType(financialDocument.getAccountType());
-//        existingAccount.setBalance(financialDocument.getBalance());
-//        existingAccount.setCurrency(financialDocument.getCurrency());
-//        existingAccount.setStatus(financialDocument.getStatus());
-//        existingAccount.setOwnerAccount(financialDocument.getOwnerAccount());
-//        existingAccount.setDescription(financialDocument.getDescription());
-//        existingAccount.setOpeningDate(financialDocument.getOpeningDate());
-//        existingAccount.setInterestRate(financialDocument.getInterestRate());
-//        existingAccount.setTransactions(financialDocument.getTransactions());
+        existingFinancialDocument.setAttachment(financialDocument.getAttachment());
+        existingFinancialDocument.setDocumentType(financialDocument.getDocumentType());
+        existingFinancialDocument.setDocumentNumber(financialDocument.getDocumentNumber());
+        existingFinancialDocument.setDocumentDate(financialDocument.getDocumentDate());
+        existingFinancialDocument.setTotalAmount(financialDocument.getTotalAmount());
+        existingFinancialDocument.setPaidAmount(financialDocument.getPaidAmount());
+        existingFinancialDocument.setStatus(financialDocument.getStatus());
+        existingFinancialDocument.setDescription(financialDocument.getDescription());
+        existingFinancialDocument.setCreatedBy(financialDocument.getCreatedBy());
 
-        return repository.saveAndFlush(existingAccount);
+        return repository.saveAndFlush(existingFinancialDocument);
     }
 
     @Override

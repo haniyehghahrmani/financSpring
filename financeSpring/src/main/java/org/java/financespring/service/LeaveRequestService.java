@@ -11,7 +11,7 @@ public interface LeaveRequestService {
 
     LeaveRequest save(LeaveRequest leaveRequest);
 
-    LeaveRequest edit(Long id, LeaveRequest leaveRequest);
+    LeaveRequest edit(Long id, LeaveRequest leaveRequest) throws NoContentException;
 
     void remove(Long id);
 
