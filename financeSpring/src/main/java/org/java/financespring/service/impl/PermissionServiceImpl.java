@@ -32,7 +32,7 @@ public class PermissionServiceImpl implements PermissionService {
                 );
         existingPermission.setName(permission.getName());
         existingPermission.setDescription(permission.getDescription());
-        existingPermission.setRoles(permission.getRoles());
+        existingPermission.setEditing(true);
 
         return repository.saveAndFlush(existingPermission);
     }

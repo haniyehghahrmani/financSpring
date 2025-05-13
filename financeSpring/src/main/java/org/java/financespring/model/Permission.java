@@ -45,9 +45,6 @@ public class Permission extends Base {
     @Column(name = "p_updated_at")
     private LocalDateTime updatedAt;
 
-    @ManyToMany(mappedBy = "permissions", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private List<Role> roles;
-
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
