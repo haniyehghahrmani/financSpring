@@ -54,6 +54,17 @@ public class Person extends Base {
     @Transient
     private String faBirthdate;
 
+    @Column(name = "e_phoneNumber", length = 11, unique = true)
+    @Pattern(regexp = "^[0-9]{1,11}$", message = "Invalid phoneNumber")
+    @Size(min = 1, max = 11, message = " phoneNumber must be between 1 and 11 characters")
+    @NotBlank(message = "Should Not Be Null")
+    private String phoneNumber;
+
+    @Column(name = "e_email", length = 100, unique = true)
+    @Email(message = "Invalid email format")
+    @Size(max = 100, message = "Email must be less than or equal to 100 characters")
+    private String email;
+
 //    @Column(name = "p_gender")
 //    @Enumerated(EnumType.ORDINAL)
 //    @NotNull(message = "Should Not Be Null")

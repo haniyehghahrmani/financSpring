@@ -33,6 +33,10 @@ public class Payroll extends Base{
     @NotNull(message = "Employee must not be null")
     private Employee employee;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "payroll_status_id", nullable = false)
+    private PayrollStatus status;
+
     //تاریخ شروع و پایان دوره پرداخت حقوق
     @Column(name = "p_pay_period_start", nullable = false)
     @NotNull(message = "Start date must not be null")

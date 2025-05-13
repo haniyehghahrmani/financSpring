@@ -51,6 +51,9 @@ public class User extends Base {
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Employee employee;
+
     @Column(name = "u_created_at", updatable = false)
     private LocalDateTime createdAt;
 

@@ -30,22 +30,22 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(
                         () -> new NoContentException("No Active Employee Was Found with id " + id + " To Update!")
                 );
-        existingEmployee.setFirstName(employee.getFirstName());
-        existingEmployee.setLastName(employee.getLastName());
+//        existingEmployee.setFirstName(employee.getFirstName());
+//        existingEmployee.setLastName(employee.getLastName());
         existingEmployee.setEmployeeCode(employee.getEmployeeCode());
-        existingEmployee.setNationalId(employee.getNationalId());
-        existingEmployee.setPhoneNumber(employee.getPhoneNumber());
-        existingEmployee.setEmail(employee.getEmail());
+//        existingEmployee.setNationalId(employee.getNationalId());
+//        existingEmployee.setPhoneNumber(employee.getPhoneNumber());
+//        existingEmployee.setEmail(employee.getEmail());
         existingEmployee.setHireDate(employee.getHireDate());
         existingEmployee.setJobTitle(employee.getJobTitle());
         existingEmployee.setDepartment(employee.getDepartment());
         existingEmployee.setBaseSalary(employee.getBaseSalary());
-        existingEmployee.setBankName(employee.getBankName());
-        existingEmployee.setBankAccountNumber(employee.getBankAccountNumber());
-        existingEmployee.setShebaNumber(employee.getShebaNumber());
+//        existingEmployee.setBankName(employee.getBankName());
+//        existingEmployee.setBankAccountNumber(employee.getBankAccountNumber());
+//        existingEmployee.setShebaNumber(employee.getShebaNumber());
         existingEmployee.setInsuranceNumber(employee.getInsuranceNumber());
         existingEmployee.setActive(employee.isActive());
-        existingEmployee.setBirthDate(employee.getBirthDate());
+//        existingEmployee.setBirthDate(employee.getBirthDate());
         existingEmployee.setEmploymentType(employee.getEmploymentType());
         existingEmployee.setSalaryStructure(employee.getSalaryStructure());
         existingEmployee.setAttendance(employee.getAttendance());
