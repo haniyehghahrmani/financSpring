@@ -16,7 +16,7 @@ public interface DeductionService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    Deduction logicalRemove(Long id) throws NoContentException;
 
     Optional<Deduction> findDeductionByIdAndDeletedFalse(Long id) throws NoContentException;
 

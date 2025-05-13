@@ -1,7 +1,6 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Account;
 import org.java.financespring.model.AccountStatus;
 import org.java.financespring.repository.AccountStatusRepository;
 import org.java.financespring.service.AccountStatusService;
@@ -43,11 +42,12 @@ public class AccountStatusServiceImpl implements AccountStatusService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public AccountStatus logicalRemove(Long id) throws NoContentException {
         repository.findAccountStatusByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Account Status Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

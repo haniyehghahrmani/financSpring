@@ -42,11 +42,12 @@ public class FinancialDocumentTypeServiceImpl implements FinancialDocumentTypeSe
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public FinancialDocumentType logicalRemove(Long id) throws NoContentException {
         repository.findFinancialDocumentTypeByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active FinancialDocumentType Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

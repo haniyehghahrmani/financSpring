@@ -47,11 +47,12 @@ public class BonusServiceImpl implements BonusService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public Bonus logicalRemove(Long id) throws NoContentException {
         repository.findBonusByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Bonus Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

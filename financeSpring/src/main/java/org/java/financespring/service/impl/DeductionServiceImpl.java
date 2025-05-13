@@ -48,11 +48,12 @@ public class DeductionServiceImpl implements DeductionService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public Deduction logicalRemove(Long id) throws NoContentException {
         repository.findDeductionByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Deduction Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

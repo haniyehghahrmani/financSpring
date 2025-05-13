@@ -16,7 +16,7 @@ public interface SalaryStructureService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    SalaryStructure logicalRemove(Long id) throws NoContentException;
 
     Optional<SalaryStructure> findSalaryStructureByIdAndDeletedFalse(Long id) throws NoContentException;
 

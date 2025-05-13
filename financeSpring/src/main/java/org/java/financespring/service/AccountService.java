@@ -16,7 +16,7 @@ public interface AccountService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    Account logicalRemove(Long id) throws NoContentException;
 
     Optional<Account> findAccountByIdAndDeletedFalse(Long id) throws NoContentException;
 

@@ -16,7 +16,7 @@ public interface FinancialDocumentTypeService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    FinancialDocumentType logicalRemove(Long id) throws NoContentException;
 
     Optional<FinancialDocumentType> findFinancialDocumentTypeByIdAndDeletedFalse(Long id) throws NoContentException;
 

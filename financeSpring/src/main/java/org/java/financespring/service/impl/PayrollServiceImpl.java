@@ -50,11 +50,12 @@ public class PayrollServiceImpl implements PayrollService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public Payroll logicalRemove(Long id) throws NoContentException {
         repository.findPayrollByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Payroll Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

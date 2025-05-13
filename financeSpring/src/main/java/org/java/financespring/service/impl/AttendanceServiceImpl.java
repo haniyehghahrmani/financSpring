@@ -2,7 +2,6 @@ package org.java.financespring.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Attachment;
 import org.java.financespring.model.Attendance;
 import org.java.financespring.repository.AttendanceRepository;
 import org.java.financespring.service.AttendanceService;
@@ -51,11 +50,12 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public Attendance logicalRemove(Long id) throws NoContentException {
         repository.findAttendanceByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Attendance Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

@@ -16,7 +16,7 @@ public interface PayrollStatusService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    PayrollStatus logicalRemove(Long id) throws NoContentException;
 
     Optional<PayrollStatus> findPayrollStatusByIdAndDeletedFalse(Long id) throws NoContentException;
 

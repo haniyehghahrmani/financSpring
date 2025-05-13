@@ -1,7 +1,6 @@
 package org.java.financespring.service;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Account;
 import org.java.financespring.model.AccountType;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +16,7 @@ public interface AccountTypeService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    AccountType logicalRemove(Long id) throws NoContentException;
 
     Optional<AccountType> findAccountTypeByIdAndDeletedFalse(Long id) throws NoContentException;
 

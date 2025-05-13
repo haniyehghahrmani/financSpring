@@ -16,7 +16,7 @@ public interface BudgetStatusService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    BudgetStatus logicalRemove(Long id) throws NoContentException;
 
     Optional<BudgetStatus> findBudgetStatusByIdAndDeletedFalse(Long id) throws NoContentException;
 

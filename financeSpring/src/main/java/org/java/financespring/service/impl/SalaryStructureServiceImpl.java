@@ -50,11 +50,12 @@ public class SalaryStructureServiceImpl implements SalaryStructureService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public SalaryStructure logicalRemove(Long id) throws NoContentException {
         repository.findSalaryStructureByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active SalaryStructure Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

@@ -42,11 +42,12 @@ public class EmploymentTypeServiceImpl implements EmploymentTypeService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public EmploymentType logicalRemove(Long id) throws NoContentException {
         repository.findEmploymentTypeByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active EmploymentType Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

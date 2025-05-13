@@ -16,7 +16,7 @@ public interface EmploymentTypeService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    EmploymentType logicalRemove(Long id) throws NoContentException;
 
     Optional<EmploymentType> findEmploymentTypeByIdAndDeletedFalse(Long id) throws NoContentException;
 

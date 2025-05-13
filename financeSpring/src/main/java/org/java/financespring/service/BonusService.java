@@ -16,7 +16,7 @@ public interface BonusService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    Bonus logicalRemove(Long id) throws NoContentException;
 
     Optional<Bonus> findBonusByIdAndDeletedFalse(Long id) throws NoContentException;
 

@@ -42,11 +42,12 @@ public class FinancialDocumentStatusServiceImpl implements FinancialDocumentStat
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public FinancialDocumentStatus logicalRemove(Long id) throws NoContentException {
         repository.findFinancialDocumentStatusByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active FinancialDocumentStatus Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

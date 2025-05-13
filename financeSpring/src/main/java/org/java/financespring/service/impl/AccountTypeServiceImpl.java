@@ -1,7 +1,6 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Account;
 import org.java.financespring.model.AccountType;
 import org.java.financespring.repository.AccountTypeRepository;
 import org.java.financespring.service.AccountTypeService;
@@ -43,11 +42,12 @@ public class AccountTypeServiceImpl implements AccountTypeService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public AccountType logicalRemove(Long id) throws NoContentException {
         repository.findAccountTypeByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Account Type Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

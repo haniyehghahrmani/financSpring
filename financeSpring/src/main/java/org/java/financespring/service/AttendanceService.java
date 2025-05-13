@@ -16,7 +16,7 @@ public interface AttendanceService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    Attendance logicalRemove(Long id) throws NoContentException;
 
     Optional<Attendance> findAttendanceByIdAndDeletedFalse(Long id) throws NoContentException;
 

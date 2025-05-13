@@ -64,11 +64,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public Employee logicalRemove(Long id) throws NoContentException {
         repository.findEmployeeByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Employee Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

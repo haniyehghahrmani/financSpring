@@ -50,11 +50,12 @@ public class FinancialDocumentServiceImpl implements FinancialDocumentService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public FinancialDocument logicalRemove(Long id) throws NoContentException {
         repository.findFinancialDocumentByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active FinancialDocument Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

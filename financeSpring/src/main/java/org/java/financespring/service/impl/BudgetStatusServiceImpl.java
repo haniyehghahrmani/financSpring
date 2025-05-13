@@ -42,11 +42,12 @@ public class BudgetStatusServiceImpl implements BudgetStatusService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public BudgetStatus logicalRemove(Long id) throws NoContentException {
         repository.findBudgetStatusByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Budget Status Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

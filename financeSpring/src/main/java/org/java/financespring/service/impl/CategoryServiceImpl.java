@@ -46,11 +46,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public void logicalRemove(Long id) throws NoContentException {
+    public Category logicalRemove(Long id) throws NoContentException {
         repository.findCategoryByIdAndDeletedFalse(id).orElseThrow(
                 () -> new NoContentException("No Active Category Was Found with id " + id + " To Remove !")
         );
         repository.logicalRemove(id);
+        return null;
     }
 
     @Override

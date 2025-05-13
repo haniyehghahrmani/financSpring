@@ -16,7 +16,7 @@ public interface CategoryService {
     void remove(Long id);
 
     @Transactional
-    void logicalRemove(Long id) throws NoContentException;
+    Category logicalRemove(Long id) throws NoContentException;
 
     Optional<Category> findCategoryByIdAndDeletedFalse(Long id) throws NoContentException;
 
