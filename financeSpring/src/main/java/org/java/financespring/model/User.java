@@ -43,16 +43,13 @@ public class User extends Base {
     @Column(name = "u_status")
     private boolean status = true;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "u_role_id")
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
-
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Employee employee;
 
     @Column(name = "u_created_at", updatable = false)
     private LocalDateTime createdAt;
