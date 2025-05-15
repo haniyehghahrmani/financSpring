@@ -63,7 +63,7 @@ public class UserController {
                             .toList().toString()
             );
         }
-        return service.edit(user.getId(),user);
+        return service.edit(user.getId(), user);
     }
 
     @DeleteMapping("/{id}")

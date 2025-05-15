@@ -31,7 +31,6 @@ public class RoleServiceImpl implements RoleService {
                         () -> new NoContentException("No Active Role Was Found with id " + id + " To Update!")
                 );
         existingRole.setRoleName(role.getRoleName());
-        existingRole.setUsers(role.getUsers());
         existingRole.setPermissions(role.getPermissions());
 
         return repository.saveAndFlush(existingRole);

@@ -43,7 +43,7 @@ public class User extends Base {
     @Column(name = "u_status")
     private boolean status = true;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "u_role_id")
     private Role role;
 
