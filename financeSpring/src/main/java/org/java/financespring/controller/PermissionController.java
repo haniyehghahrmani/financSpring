@@ -75,7 +75,8 @@ public class PermissionController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Optional<Permission> findById(@PathVariable Long id) throws NoContentException {
-        return service.findPermissionByIdAndDeletedFalse(id);
+        return Optional.ofNullable(service.findPermissionByIdAndDeletedFalse(id)
+                .orElseThrow(() -> new NoContentException("Permission not found")));
     }
 
     @GetMapping("/all")

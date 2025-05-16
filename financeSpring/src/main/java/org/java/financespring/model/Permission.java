@@ -20,21 +20,20 @@ import java.time.LocalDateTime;
 
 @Entity(name = "PermissionEntity")
 @Table(name = "permissions")
-public class Permission extends Base {
+public class Permission extends Base{
 
     @Id
-    @SequenceGenerator(name = "permissionSeq", sequenceName = "permission_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "permissionSeq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_id")
     private Long id;
 
-    @Column(name = "p_name", columnDefinition = "NVARCHAR2(50)", unique = true)
+    @Column(name = "p_name", columnDefinition = "VARCHAR(50)", unique = true)
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,50}$", message = "Invalid permission name")
     @Size(min = 3, max = 50, message = "Permission name must be between 3 and 50 characters")
     @NotBlank(message = "Permission name should not be null or empty")
     private String name;
 
-    @Column(name = "p_description", columnDefinition = "NVARCHAR2(255)")
+    @Column(name = "p_description", columnDefinition = "VARCHAR(255)")
     @Size(max = 255, message = "Description must be less than 255 characters")
     private String description;
 

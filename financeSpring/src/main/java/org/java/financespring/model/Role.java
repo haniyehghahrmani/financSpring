@@ -12,7 +12,6 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @SuperBuilder
@@ -26,21 +25,22 @@ import java.util.Set;
 public class Role extends Base {
 
     @Id
-    @SequenceGenerator(name = "roleSeq", sequenceName = "role_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roleSeq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "r_id")
     private Long id;
 
-    @Column(name = "r_name", columnDefinition = "NVARCHAR2(50)", unique = true)
+    @Column(name = "r_name", columnDefinition = "VARCHAR(50)", unique = true)
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,50}$", message = "Invalid role name")
     @Size(min = 3, max = 50, message = "Role name must be between 3 and 50 characters")
     @NotBlank(message = "Role name should not be null or empty")
     private String roleName;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "role_permission",
+    @JoinTable(
+            name = "role_permission",
             joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id"))
+            inverseJoinColumns = @JoinColumn(name = "permission_id")
+    )
     private Set<Permission> permissions = new HashSet<>();
 
     @Column(name = "r_created_at", updatable = false)
