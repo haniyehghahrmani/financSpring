@@ -29,7 +29,7 @@ public class TransactionTypeController {
     public String transactionTypeForm(Model model) {
         model.addAttribute("transactionTypeList", service.findAll());
         model.addAttribute("transactionType", new TransactionType());
-        return "transaction-type"; // صفحه‌ی مورد نظر برای نمایش فهرست و فرم
+        return "transaction-type";
     }
 
     @PostMapping
