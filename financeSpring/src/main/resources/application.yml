@@ -135,7 +135,7 @@
 
 spring:
   datasource:
-  url: jdbc:oracle:thin:@localhost:1521:xe
+  url: jdbc:oracle:thin:@localhost:1521:orcl
   username: proj
   password: proj1234
   driver-class-name: oracle.jdbc.OracleDriver

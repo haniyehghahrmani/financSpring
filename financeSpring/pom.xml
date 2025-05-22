@@ -10,6 +10,8 @@
     </parent>
     <groupId>org.java</groupId>
     <artifactId>financeSpring</artifactId>
+
+
     <version>0.0.1-SNAPSHOT</version>
     <name>financeSpring</name>
     <description>financeSpring</description>
