@@ -1,134 +1,146 @@
-# Common application settings
-spring:
-  application:
-    name: financeSpring
-  profiles:
-    active: prod  # Default profile, override with --spring.profiles.active
-  web:
-    resources:
-      static-locations: classpath:/static/
-  thymeleaf:
-    cache: false
-    prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML
-    encoding: UTF-8
+## Common application settings
+#spring:
+#  application:
+#    name: financeSpring
+#  profiles:
+#    active: prod  # Default profile, override with --spring.profiles.active
+#  web:
+#    resources:
+#      static-locations: classpath:/static/
+#  thymeleaf:
+#    cache: false
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    mode: HTML
+#    encoding: UTF-8
+#
+#
+## Production profile (PostgreSQL, MongoDB, Redis)
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: prod
+#  datasource:
+#    url: jdbc:postgresql://postgres:5432/finance
+#    username: finance
+#    password: proj123
+#    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      minimum-idle: 1
+#      maximum-pool-size: 5
+#      connection-timeout: 30000  # 30 seconds
+#      idle-timeout: 60000        # 1 minute
+#      max-lifetime: 1800000      # 30 minutes
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    properties:
+#      hibernate:
+#        ddl-auto: create         # Update schema on startup
+#        format_sql: true         # Format SQL in logs
+#        show_sql: true           # Show SQL in logs
+#        temp.use_jdbc_metadata_defaults: false
+#  data:
+#    mongodb:
+#      host: mongo
+#      port: 27017
+#      database: spring_db_photos
+#    redis:
+#      host: redis
+#      port: 6379
+#  cache:
+#    type: redis
+#
+#
+## Development/Testing profile (H2, MongoDB, Redis)
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: dev
+#  datasource:
+#    url: jdbc:h2:mem:spring_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    username: sa
+#    password: ""
+#    driver-class-name: org.h2.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop    # Recreate schema for dev/testing
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
+#        format_sql: true
+#        use_sql_comments: true
+#  data:
+#    mongodb:
+#      host: localhost
+#      port: 27017
+#      database: spring_db_photos
+#    redis:
+#      host: localhost
+#      port: 6379
+#  cache:
+#    type: redis
+#  h2:
+#    console:
+#      enabled: true            # Enable H2 console
+#      path: /h2-console
+#
+## Server and security settings
+#server:
+#  port: 8443                  # HTTPS port
+#  ssl:
+#    key-store: classpath:/ssl/keystore.jks
+#    key-store-password: java123
+#    key-alias: myalias
+#    key-store-type: JKS
+#  servlet:
+#    session:
+#      timeout: 15m            # Session timeout: 15 minutes
+#      cookie:
+#        http-only: true       # Prevent JS access
+#        secure: true          # HTTPS only
+#        same-site: strict     # Prevent CSRF
+#
+## Management endpoints (Actuator)
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,metrics,prometheus  # Exposed endpoints
+#
+## Logging configuration
+#logging:
+#  level:
+#    root: INFO
+#  #    com.spring_jpa_cache: DEBUG
+#  #    org.springframework.security: DEBUG
+#  #    org.hibernate.SQL: DEBUG
+#  #    org.hibernate.orm.jdbc.bind: TRACE
+#  #    org.hibernate.orm.jdbc.extract: TRACE
+#  #    org.springframework.transaction: DEBUG
+#  #    org.hibernate.engine.transaction: DEBUG
+#  #    com.zaxxer.hikari: DEBUG
+#  #    com.zaxxer.hikari.pool: TRACE
+#  #    org.springframework.jdbc: DEBUG
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+#  file:
+#    name: logs/application.log
+#  logback:
+#    rollingpolicy:
+#      max-file-size: 10MB
+#      max-history: 7          # Keep 7 days of logs
 
-
-# Production profile (PostgreSQL, MongoDB, Redis)
----
 spring:
-  config:
-    activate:
-      on-profile: prod
   datasource:
-    url: jdbc:postgresql://postgres:5432/finance
-    username: finance
-    password: proj123
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      minimum-idle: 1
-      maximum-pool-size: 5
-      connection-timeout: 30000  # 30 seconds
-      idle-timeout: 60000        # 1 minute
-      max-lifetime: 1800000      # 30 minutes
+  url: jdbc:oracle:thin:@localhost:1521:xe
+  username: proj
+  password: proj1234
+  driver-class-name: oracle.jdbc.OracleDriver
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    properties:
-      hibernate:
-        ddl-auto: create         # Update schema on startup
-        format_sql: true         # Format SQL in logs
-        show_sql: true           # Show SQL in logs
-        temp.use_jdbc_metadata_defaults: false
-  data:
-    mongodb:
-      host: mongo
-      port: 27017
-      database: spring_db_photos
-    redis:
-      host: redis
-      port: 6379
-  cache:
-    type: redis
-
-
-# Development/Testing profile (H2, MongoDB, Redis)
----
-spring:
-  config:
-    activate:
-      on-profile: dev
-  datasource:
-    url: jdbc:h2:mem:spring_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password: ""
-    driver-class-name: org.h2.Driver
-  jpa:
-    hibernate:
-      ddl-auto: create-drop    # Recreate schema for dev/testing
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        format_sql: true
-        use_sql_comments: true
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: spring_db_photos
-    redis:
-      host: localhost
-      port: 6379
-  cache:
-    type: redis
-  h2:
-    console:
-      enabled: true            # Enable H2 console
-      path: /h2-console
-
-# Server and security settings
-server:
-  port: 8443                  # HTTPS port
-  ssl:
-    key-store: classpath:/ssl/keystore.jks
-    key-store-password: java123
-    key-alias: myalias
-    key-store-type: JKS
-  servlet:
-    session:
-      timeout: 15m            # Session timeout: 15 minutes
-      cookie:
-        http-only: true       # Prevent JS access
-        secure: true          # HTTPS only
-        same-site: strict     # Prevent CSRF
-
-# Management endpoints (Actuator)
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,metrics,prometheus  # Exposed endpoints
-
-# Logging configuration
-logging:
-  level:
-    root: INFO
-  #    com.spring_jpa_cache: DEBUG
-  #    org.springframework.security: DEBUG
-  #    org.hibernate.SQL: DEBUG
-  #    org.hibernate.orm.jdbc.bind: TRACE
-  #    org.hibernate.orm.jdbc.extract: TRACE
-  #    org.springframework.transaction: DEBUG
-  #    org.hibernate.engine.transaction: DEBUG
-  #    com.zaxxer.hikari: DEBUG
-  #    com.zaxxer.hikari.pool: TRACE
-  #    org.springframework.jdbc: DEBUG
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-  file:
-    name: logs/application.log
-  logback:
-    rollingpolicy:
-      max-file-size: 10MB
-      max-history: 7          # Keep 7 days of logs
+properties:
+  hibernate:
+  ddl-auto: creat-drop
+  dialect: org.hibernate.dialect.OracleDialect
