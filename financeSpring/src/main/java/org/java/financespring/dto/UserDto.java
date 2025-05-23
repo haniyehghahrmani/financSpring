@@ -14,11 +14,11 @@ import lombok.experimental.SuperBuilder;
 
 public class UserDto {
 
+    private Long id;
+
     private String username;
 
-    private boolean status;
-
-    private String roleName;
+    private String role;
 
     private String personNationalId;
 }
