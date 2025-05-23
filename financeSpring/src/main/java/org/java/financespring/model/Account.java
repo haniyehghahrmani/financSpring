@@ -106,4 +106,3 @@ public class Account extends Base{
         this.openingDate = LocalDate.from(PersianDate.parse(faOpeningDate).toGregorian().atStartOfDay());
     }
 }
-

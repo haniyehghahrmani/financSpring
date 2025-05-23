@@ -2,7 +2,7 @@ package org.java.financespring.controller;
 
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
-import org.java.financespring.dto.UserDto;
+import org.java.financespring.dto.UserDTO;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.User;
 import org.java.financespring.service.PersonService;
@@ -77,14 +77,14 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Optional<UserDto> findById(@PathVariable Long id) throws NoContentException {
+    public Optional<UserDTO> findById(@PathVariable Long id) throws NoContentException {
         return Optional.ofNullable(service.findById(id));
     }
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<UserDto> findAll(Model model) {
+    public List<UserDTO> findAll(Model model) {
         return service.findAll();
     }
 }

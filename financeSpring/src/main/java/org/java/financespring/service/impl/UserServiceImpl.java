@@ -1,6 +1,6 @@
 package org.java.financespring.service.impl;
 
-import org.java.financespring.dto.UserDto;
+import org.java.financespring.dto.UserDTO;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.User;
 import org.java.financespring.repository.UserRepository;
@@ -67,11 +67,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findAll() {
+    public List<UserDTO> findAll() {
         List<User> users = repository.findAll();
 
         return users.stream()
-                .map(u -> new UserDto(
+                .map(u -> new UserDTO(
                         u.getId(),
                         u.getUsername(),
                         u.getRole() != null ? u.getRole().getRoleName() : null,
@@ -80,9 +80,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findById(Long id) {
+    public UserDTO findById(Long id) {
         return repository.findById(id)
-                .map(u -> new UserDto(
+                .map(u -> new UserDTO(
                         u.getId(),
                         u.getUsername(),
                         u.getRole() != null ? u.getRole().getRoleName() : null,

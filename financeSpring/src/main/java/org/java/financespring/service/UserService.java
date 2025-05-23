@@ -1,6 +1,6 @@
 package org.java.financespring.service;
 
-import org.java.financespring.dto.UserDto;
+import org.java.financespring.dto.UserDTO;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.User;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,7 @@ public interface UserService {
 
     Optional<User> findUserByIdAndDeletedFalse(Long id) throws NoContentException;
 
-    List<UserDto> findAll();
+    List<UserDTO> findAll();
 
-    UserDto findById(Long id);
+    UserDTO findById(Long id);
 }
