@@ -1,5 +1,6 @@
 package org.java.financespring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.mfathi91.time.PersianDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -35,7 +36,7 @@ public class Account extends Base{
     @NotBlank(message = "Should Not Be Null")
     private String accountName;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "accountType_id", nullable = false)
     @NotNull(message = "Account type should not be null")
     private AccountType accountType;
@@ -57,12 +58,13 @@ public class Account extends Base{
     @Column(name = "a_last_updated")
     private LocalDate lastUpdated;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "accountStatus_id", nullable = false)
     @NotNull(message = "Account status should not be null")
     private AccountStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
     private User ownerAccount;
 
@@ -85,6 +87,7 @@ public class Account extends Base{
     @DecimalMin(value = "0.01", inclusive = true, message = "Interest rate must be greater than zero")
     private BigDecimal interestRate;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "account")
     private List<Transaction> transactions;
 
