@@ -1,13 +1,14 @@
 package org.java.financespring.controller;
 
-import jakarta.persistence.Cacheable;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
+import org.java.financespring.dto.EmployeeDTO;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Employee;
 import org.java.financespring.service.*;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +17,24 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Cacheable
+@Controller
 @RequestMapping("/employee")
 public class EmployeeController {
-    
+
     private final EmployeeService service;
-    
+
     private final EmploymentTypeService employmentTypeService;
-    
+
     private final SalaryStructureService salaryStructureService;
-    
+
     private final AttendanceService attendanceService;
-    
+
     private final LeaveRequestService leaveRequestService;
-    
+
     private final BonusService bonusService;
-    
+
     private final DeductionService deductionService;
-    
+
     private final PayrollService payrollService;
 
     public EmployeeController(EmployeeService service, EmploymentTypeService employmentTypeService, SalaryStructureService salaryStructureService, AttendanceService attendanceService, LeaveRequestService leaveRequestService, BonusService bonusService, DeductionService deductionService, PayrollService payrollService) {
@@ -76,7 +77,7 @@ public class EmployeeController {
                             .toList().toString()
             );
         }
-        return service.edit(employee.getId(),employee);
+        return service.edit(employee.getId(), employee);
     }
 
     @DeleteMapping("/{id}")
@@ -89,14 +90,14 @@ public class EmployeeController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Optional<Employee> findById(@PathVariable Long id) throws NoContentException {
-        return service.findEmployeeByIdAndDeletedFalse(id);
+    public Optional<EmployeeDTO> findById(@PathVariable Long id) throws NoContentException {
+        return service.findById(id);
     }
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<Employee> findAll(Model model) {
+    public List<EmployeeDTO> findAll(Model model) {
         return service.findAll();
     }
 }

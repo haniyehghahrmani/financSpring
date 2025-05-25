@@ -23,5 +23,5 @@ public interface EmployeeService {
 
     List<EmployeeDTO> findAll();
 
-    Employee findById(Long id);
+    Optional<EmployeeDTO> findById(Long id);
 }
