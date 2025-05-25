@@ -1,5 +1,7 @@
 package org.java.financespring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.mfathi91.time.PersianDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -20,7 +22,7 @@ import java.time.LocalTime;
 
 @Entity(name = "AttendanceEntity")
 @Table(name = "attendances")
-public class Attendance extends Base{
+public class Attendance extends Base {
 
     @Id
     @SequenceGenerator(name = "attendanceSeq", sequenceName = "attendance_seq", allocationSize = 1)
@@ -31,7 +33,14 @@ public class Attendance extends Base{
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "a_employee_id", nullable = false)
     @NotNull(message = "Employee should not be null")
+    @JsonIgnore
     private Employee employee;
+
+    @JsonProperty("employeeCode")
+    public String getEmployeeCode() {
+        return employee != null ? employee.getEmployeeCode() : null;
+    }
+
 
     @Column(name = "a_date", nullable = false)
     @PastOrPresent(message = "Invalid Date")
@@ -41,14 +50,10 @@ public class Attendance extends Base{
     @Transient
     private String faDate;
 
-    @Column(name = "a_check_in_time", nullable = false)
-    @PastOrPresent(message = "Invalid check in Time")
-    @NotNull(message = "Check in time should not be null")
+    @Column(name = "a_check_in_time")
     private LocalTime checkInTime;  // زمان ورود
 
-    @Column(name = "a_check_out_time", nullable = false)
-    @PastOrPresent(message = "Invalid check out Time")
-    @NotNull(message = "Check out time should not be null")
+    @Column(name = "a_check_out_time")
     private LocalTime checkOutTime; // زمان خروج
 
     @Column(name = "a_is_absent", nullable = false)
@@ -60,7 +65,7 @@ public class Attendance extends Base{
     private boolean isOnLeave = false;
 
     //میزان اضافه‌کاری
-    @Column(name = "a_overtime_hours", nullable = false)
+    @Column(name = "a_overtime_hours")
 //    @DecimalMin(value = "0.0", inclusive = true, message = "Overtime hours must be non-negative")
 //    @Digits(integer = 4, fraction = 2, message = "Overtime hours format is invalid")
     private double overtimeHours;
