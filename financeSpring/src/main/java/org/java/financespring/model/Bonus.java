@@ -1,5 +1,7 @@
 package org.java.financespring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.mfathi91.time.PersianDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -20,7 +22,7 @@ import java.time.LocalDate;
 
 @Entity(name = "BonusEntity")
 @Table(name = "bonuses")
-public class Bonus extends Base{
+public class Bonus extends Base {
 
     @Id
     @SequenceGenerator(name = "bonusSeq", sequenceName = "bonus_seq", allocationSize = 1)
@@ -30,11 +32,24 @@ public class Bonus extends Base{
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "employee_id", nullable = false)
+    @JsonIgnore
     private Employee employee;
 
+    @JsonProperty("employeeCode")
+    private String getEmployeeCode() {
+        return employee != null ? employee.getEmployeeCode() : null;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "payroll_id", nullable = false)
+    @JoinColumn(name = "payroll_id")
+//    @JoinColumn(name = "payroll_id", nullable = false)
+    @JsonIgnore
     private Payroll payroll;
+
+    @JsonProperty("payrollId")
+    private Long getPayrollId() {
+        return payroll != null ? payroll.getId() : null;
+    }
 
     @Column(name = "b_amount", precision = 18, scale = 2, nullable = false)
     @NotNull(message = "Amount should not be null")

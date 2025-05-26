@@ -37,10 +37,9 @@ public class Attendance extends Base {
     private Employee employee;
 
     @JsonProperty("employeeCode")
-    public String getEmployeeCode() {
+    private String getEmployeeCode() {
         return employee != null ? employee.getEmployeeCode() : null;
     }
-
 
     @Column(name = "a_date", nullable = false)
     @PastOrPresent(message = "Invalid Date")
