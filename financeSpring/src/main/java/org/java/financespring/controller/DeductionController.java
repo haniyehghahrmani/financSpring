@@ -10,6 +10,7 @@ import org.java.financespring.service.EmployeeService;
 import org.java.financespring.service.PayrollService;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Cacheable
+@Controller
 @RequestMapping("/deduction")
 public class DeductionController {
 

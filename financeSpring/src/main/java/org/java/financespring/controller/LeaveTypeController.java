@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/leave-types")
+@RequestMapping("/leaveTypes")
 public class LeaveTypeController {
 
     private final LeaveTypeService service;
@@ -47,10 +47,10 @@ public class LeaveTypeController {
         return service.save(leaveType);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public LeaveType update(@PathVariable Long id, @Valid LeaveType leaveType, BindingResult result) throws NoContentException {
+    public LeaveType update(@Valid LeaveType leaveType, BindingResult result) throws NoContentException {
         if (result.hasErrors()) {
             throw new ValidationException(
                     result.getAllErrors()
@@ -59,7 +59,7 @@ public class LeaveTypeController {
                             .toList().toString()
             );
         }
-        return service.edit(id, leaveType);
+        return service.edit(leaveType.getId(),leaveType);
     }
 
     @DeleteMapping("/{id}")

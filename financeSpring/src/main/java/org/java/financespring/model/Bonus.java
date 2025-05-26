@@ -73,7 +73,7 @@ public class Bonus extends Base {
     // آیا این پاداش شامل مالیات هست یا نه
     @Column(name = "b_taxable", nullable = false)
     @NotNull(message = "taxable must not be null")
-    private boolean taxable = false;
+    private boolean taxable;
 
     public String getFaGrantedDate() {
         return String.valueOf(PersianDate.fromGregorian(LocalDate.from(grantedDate)));
