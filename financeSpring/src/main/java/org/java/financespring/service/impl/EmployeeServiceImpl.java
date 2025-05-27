@@ -1,6 +1,8 @@
 package org.java.financespring.service.impl;
 
+import org.java.financespring.dto.EmployeeDTO;
 import org.java.financespring.exception.NoContentException;
+import org.java.financespring.mapper.EmployeeMapper;
 import org.java.financespring.model.Employee;
 import org.java.financespring.repository.EmployeeRepository;
 import org.java.financespring.service.EmployeeService;
@@ -9,14 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository repository;
+    private final EmployeeMapper employeeMapper;
 
-    public EmployeeServiceImpl(EmployeeRepository repository) {
+    public EmployeeServiceImpl(EmployeeRepository repository, EmployeeMapper employeeMapper) {
         this.repository = repository;
+        this.employeeMapper = employeeMapper;
     }
 
     @Override
@@ -30,22 +35,15 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(
                         () -> new NoContentException("No Active Employee Was Found with id " + id + " To Update!")
                 );
-//        existingEmployee.setFirstName(employee.getFirstName());
-//        existingEmployee.setLastName(employee.getLastName());
+        existingEmployee.setPerson(employee.getPerson());
         existingEmployee.setEmployeeCode(employee.getEmployeeCode());
-//        existingEmployee.setNationalId(employee.getNationalId());
-//        existingEmployee.setPhoneNumber(employee.getPhoneNumber());
-//        existingEmployee.setEmail(employee.getEmail());
         existingEmployee.setHireDate(employee.getHireDate());
         existingEmployee.setJobTitle(employee.getJobTitle());
         existingEmployee.setDepartment(employee.getDepartment());
         existingEmployee.setBaseSalary(employee.getBaseSalary());
-//        existingEmployee.setBankName(employee.getBankName());
-//        existingEmployee.setBankAccountNumber(employee.getBankAccountNumber());
-//        existingEmployee.setShebaNumber(employee.getShebaNumber());
+        existingEmployee.setAccount(employee.getAccount());
         existingEmployee.setInsuranceNumber(employee.getInsuranceNumber());
         existingEmployee.setActive(employee.isActive());
-//        existingEmployee.setBirthDate(employee.getBirthDate());
         existingEmployee.setEmploymentType(employee.getEmploymentType());
         existingEmployee.setSalaryStructure(employee.getSalaryStructure());
         existingEmployee.setAttendance(employee.getAttendance());
@@ -83,17 +81,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> findAll() {
-        return repository.findAll();
+    public List<EmployeeDTO> findAll() {
+        List<Employee> employees = repository.findAll();
+        return employees.stream()
+                .map(employeeMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Employee findById(Long id) {
-        try {
-            return repository.findById(id)
-                    .orElseThrow(() -> new NoContentException("No employee found with id " + id));
-        } catch (NoContentException e) {
-            throw new RuntimeException(e);
-        }
+    public Optional<EmployeeDTO> findById(Long id) {
+        return repository.findById(id)
+                .map(employeeMapper::toDTO);
     }
 }

@@ -1,5 +1,6 @@
 package org.java.financespring.service.impl;
 
+import org.java.financespring.dto.UserDTO;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.User;
 import org.java.financespring.repository.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -65,17 +67,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
-        return repository.findAll();
+    public List<UserDTO> findAll() {
+        List<User> users = repository.findAll();
+
+        return users.stream()
+                .map(u -> new UserDTO(
+                        u.getId(),
+                        u.getUsername(),
+                        u.getRole() != null ? u.getRole().getRoleName() : null,
+                        u.getPerson() != null ? u.getPerson().getNationalId() : null))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public User findById(Long id) {
-        try {
-            return repository.findById(id)
-                    .orElseThrow(() -> new NoContentException("No user found with id " + id));
-        } catch (NoContentException e) {
-            throw new RuntimeException(e);
-        }
+    public UserDTO findById(Long id) {
+        return repository.findById(id)
+                .map(u -> new UserDTO(
+                        u.getId(),
+                        u.getUsername(),
+                        u.getRole() != null ? u.getRole().getRoleName() : null,
+                        u.getPerson() != null ? u.getPerson().getNationalId() : null))
+                .orElse(null);
     }
 }

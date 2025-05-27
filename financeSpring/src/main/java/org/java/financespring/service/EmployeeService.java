@@ -1,5 +1,6 @@
 package org.java.financespring.service;
 
+import org.java.financespring.dto.EmployeeDTO;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Employee;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,7 @@ public interface EmployeeService {
 
     Optional<Employee> findEmployeeByIdAndDeletedFalse(Long id) throws NoContentException;
 
-    List<Employee> findAll();
+    List<EmployeeDTO> findAll();
 
-    Employee findById(Long id);
+    Optional<EmployeeDTO> findById(Long id);
 }

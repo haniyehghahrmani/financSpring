@@ -2,6 +2,7 @@ package org.java.financespring.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,8 +27,9 @@ public class EmploymentType extends Base{
     @Column(name = "e_id")
     private Long id;
 
-    @Column(name = "e_name", length = 200, nullable = false)
-    @NotBlank(message = "Financial document type name should not be blank")
-    @Size(min = 3, max = 200, message = "Financial document type name must be between 3 and 200 characters")
+    @Column(name = "e_name", length = 200, nullable = false,unique = true)
+    @Pattern(regexp = "^[a-zA-Z0-9\\s]{3,30}$", message = "Invalid name")
+    @Size(min = 3, max = 30, message = "name must be between 3 and 30 characters")
+    @NotBlank(message = "employment types name should not be blank")
     private String name;
 }

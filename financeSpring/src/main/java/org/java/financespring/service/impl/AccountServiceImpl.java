@@ -4,6 +4,7 @@ import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Account;
 import org.java.financespring.repository.AccountRepository;
 import org.java.financespring.service.AccountService;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/leave-requests")
+@RequestMapping("/leaveRequests")
 public class LeaveRequestController {
 
     private final LeaveRequestService service;
@@ -47,10 +47,10 @@ public class LeaveRequestController {
         return service.save(leaveRequest);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public LeaveRequest update(@PathVariable Long id, @Valid LeaveRequest leaveRequest, BindingResult result) throws NoContentException {
+    public LeaveRequest update(@Valid LeaveRequest leaveRequest, BindingResult result) throws NoContentException {
         if (result.hasErrors()) {
             throw new ValidationException(
                     result.getAllErrors()
@@ -59,7 +59,7 @@ public class LeaveRequestController {
                             .toList().toString()
             );
         }
-        return service.edit(id, leaveRequest);
+        return service.edit(leaveRequest.getId(), leaveRequest);
     }
 
     @DeleteMapping("/{id}")

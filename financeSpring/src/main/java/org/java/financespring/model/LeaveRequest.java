@@ -1,5 +1,7 @@
 package org.java.financespring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.mfathi91.time.PersianDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -33,7 +35,13 @@ public class LeaveRequest extends Base{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "employee_id", nullable = false)
     @NotNull(message = "Employee must not be null")
+    @JsonIgnore
     private Employee employee;
+
+    @JsonProperty("employeeCode")
+    private String getEmployeeCode() {
+        return employee != null ? employee.getEmployeeCode() : null;
+    }
 
     @Column(name = "l_start_date", nullable = false)
     @NotNull(message = "Start date must not be null")
@@ -51,7 +59,7 @@ public class LeaveRequest extends Base{
     @Transient
     private String faEndDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @NotNull(message = "Leave type must not be null")
     private LeaveType type; // نوع مرخصی
 
@@ -61,10 +69,9 @@ public class LeaveRequest extends Base{
 
     //تأیید شده؟
     @Column(name = "l_is_approved", nullable = false)
-    private boolean approved = false;
+    private boolean approved;
 
-    @Column(name = "l_request_date", nullable = false)
-    @NotNull(message = "Request date must not be null")
+    @Column(name = "l_request_date")
     @PastOrPresent(message = "Request date cannot be in the future")
     private LocalDate requestDate;
 
@@ -72,7 +79,7 @@ public class LeaveRequest extends Base{
     @PastOrPresent(message = "Approval date cannot be in the future")
     private LocalDate approvalDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @NotNull(message = "Status must not be null")
     private LeaveStatus status;
 

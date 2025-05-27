@@ -1,5 +1,6 @@
 package org.java.financespring.model;
 
+import com.github.mfathi91.time.PersianDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -43,8 +44,13 @@ public class Employee extends Base {
     @PastOrPresent(message = "Hire date cannot be in the future")
     private LocalDate hireDate;
 
+    @Transient
+    private String faHireDate;
+
     @Column(name = "e_job_title", length = 100)
-    @Size(max = 100, message = "Job title must be less than or equal to 100 characters")
+    @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{2,50}$", message = "Invalid Job Title")
+    @Size(min = 2, max = 50, message = "job title must be between 2 and 50 characters")
+    @NotBlank(message = "Should Not Be Null")
     private String jobTitle;
 
     @Column(name = "e_department", length = 100)
@@ -70,22 +76,35 @@ public class Employee extends Base {
     @NotNull(message = "Employment type must be specified")
     private EmploymentType employmentType;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "e_salary_structure_id")
     private SalaryStructure salaryStructure;
 
-    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST},  fetch = FetchType.LAZY)
     private List<Attendance> attendance;
 
-    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST},  fetch = FetchType.LAZY)
     private List<LeaveRequest> leaveRequest;
 
-    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST},  fetch = FetchType.LAZY)
     private List<Bonus> bonus;
 
-    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST},  fetch = FetchType.LAZY)
     private List<Deduction> deduction;
 
-    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     private List<Payroll> payroll;
+
+    public String getFaHireDate() {
+        if (faHireDate != null) {
+            return PersianDate.fromGregorian(hireDate).toString();
+        }
+        return null;
+    }
+
+    public void setFaHireDate(String faHireDate) {
+        if (faHireDate != null && !faHireDate.isEmpty()) {
+            this.hireDate=PersianDate.parse(faHireDate).toGregorian();
+        }
+    }
 }

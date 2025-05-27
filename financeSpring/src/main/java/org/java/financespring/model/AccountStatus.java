@@ -2,6 +2,7 @@ package org.java.financespring.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +28,8 @@ public class AccountStatus extends Base{
     private Long id;
 
     @Column(name = "a_name", length = 200, nullable = false)
-    @NotBlank(message = "Account status name should not be blank")
-    @Size(min = 3, max = 200, message = "Account status name must be between 3 and 200 characters")
+    @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,50}$", message = "Invalid Name")
+    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+    @NotBlank(message = "Should Not Be Null")
     private String name;
 }

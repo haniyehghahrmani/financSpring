@@ -12,13 +12,13 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 
-public class UserDto {
+public class UserDTO {
+
+    private Long id;
 
     private String username;
 
-    private boolean status;
-
-    private String roleName;
+    private String role;
 
     private String personNationalId;
 }
