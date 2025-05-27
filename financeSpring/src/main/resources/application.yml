@@ -135,12 +135,13 @@
 
 spring:
   datasource:
-  url: jdbc:oracle:thin:@localhost:1521:orcl
+  url: jdbc:oracle:thin:@localhost:1521:xe
   username: proj
   password: proj1234
   driver-class-name: oracle.jdbc.OracleDriver
   jpa:
+    show-sql: true
 properties:
   hibernate:
-  ddl-auto: creat-drop
+  ddl-auto: creat
   dialect: org.hibernate.dialect.OracleDialect

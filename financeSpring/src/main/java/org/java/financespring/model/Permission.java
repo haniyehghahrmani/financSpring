@@ -28,7 +28,7 @@ public class Permission extends Base{
     private Long id;
 
     @Column(name = "p_name", columnDefinition = "VARCHAR(50)", unique = true)
-    @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,50}$", message = "Invalid permission name")
+    @Pattern(regexp = "^[a-zA-Z_آ-ی\\s]{3,50}$", message = "Invalid permission name")
     @Size(min = 3, max = 50, message = "Permission name must be between 3 and 50 characters")
     @NotBlank(message = "Permission name should not be null or empty")
     private String name;
