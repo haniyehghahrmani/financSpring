@@ -1,5 +1,7 @@
 package org.java.financespring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
@@ -30,7 +32,13 @@ public class SalaryStructure extends Base{
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "employee_id", nullable = false, unique = true)
     @NotNull(message = "Employee must not be null")
-    private Employee employee; // ارتباط با کارمند
+    @JsonIgnore
+    private Employee employee;
+
+    @JsonProperty("employeeCode")
+    private String getEmployeeCode() {
+        return employee != null ? employee.getEmployeeCode() : null;
+    }
 
     //حقوق پایه
     @Column(name = "s_base_salary", precision = 15, scale = 2, nullable = false)

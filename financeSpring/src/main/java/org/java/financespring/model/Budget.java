@@ -1,5 +1,7 @@
 package org.java.financespring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.mfathi91.time.PersianDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -12,6 +14,7 @@ import lombok.experimental.SuperBuilder;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -43,14 +46,12 @@ public class Budget extends Base{
     private BigDecimal totalAmount;
 
     //مقدار خرج‌شده
-    @Column(name = "b_spent_amount", precision = 18, scale = 2, nullable = false)
-    @NotNull(message = "Amount should not be null")
+    @Column(name = "b_spent_amount", precision = 18, scale = 2)
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal spentAmount;
 
     //باقیمانده‌ی بودجه
-    @Column(name = "b_remaining_amount", precision = 18, scale = 2, nullable = false)
-    @NotNull(message = "Amount should not be null")
+    @Column(name = "b_remaining_amount", precision = 18, scale = 2)
     @DecimalMin(value = "0.01", inclusive = true, message = "Amount must be greater than zero")
     private BigDecimal remainingAmount;
 
@@ -63,20 +64,26 @@ public class Budget extends Base{
     private String faStartDate;
 
     @Column(name = "b_end_date", nullable = false)
-    @PastOrPresent(message = "Invalid End Date")
+    @FutureOrPresent(message = "Invalid End Date")
     @NotNull(message = "End date should not be null")
     private LocalDate endDate;
 
     @Transient
     private String faEndDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "budget_status", nullable = false)
     private BudgetStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "budget_owner", nullable = false)
+    @JsonIgnore
     private User owner;
+
+    @JsonProperty("ownerUsername")
+    private String getOwnerUsername() {
+        return owner != null ? owner.getUsername() : null;
+    }
 
     @Column(name = "b_description", columnDefinition = "NVARCHAR2(200)")
     @Pattern(regexp = "^[a-zA-Zآ-ی\\s]{3,200}$", message = "Invalid Description")
@@ -90,8 +97,18 @@ public class Budget extends Base{
     @Column(name = "b_last_updated")
     private LocalDateTime lastUpdated;
 
-    @OneToMany(mappedBy = "budget", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "budget", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @JsonIgnore
     private List<Transaction> transactions;
+
+    @JsonProperty("transactionsId")
+    private List<Long> getTransactionsId() {
+        if (transactions != null && !transactions.isEmpty()) {
+            return Collections.singletonList(transactions.get(0).getId());
+        } else {
+            return Collections.emptyList();
+        }
+    }
 
     @PrePersist
     protected void onCreate() {
