@@ -1,5 +1,7 @@
 package org.java.financespring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.mfathi91.time.PersianDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -20,7 +22,7 @@ import java.time.LocalDate;
 
 @Entity(name = "PayrollEntity")
 @Table(name = "payrolls")
-public class Payroll extends Base{
+public class Payroll extends Base {
 
     @Id
     @SequenceGenerator(name = "payrollSeq", sequenceName = "payroll_seq", allocationSize = 1)
@@ -31,9 +33,15 @@ public class Payroll extends Base{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false)
     @NotNull(message = "Employee must not be null")
+    @JsonIgnore
     private Employee employee;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonProperty("employeeCode")
+    private String getEmployeeCode() {
+        return employee != null ? employee.getEmployeeCode() : null;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "payroll_status_id", nullable = false)
     private PayrollStatus status;
 
@@ -60,27 +68,27 @@ public class Payroll extends Base{
     //مزایا
     @Column(name = "p_allowances", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Allowances must be non-negative")
-    private BigDecimal allowances = BigDecimal.ZERO;
+    private BigDecimal allowances;
 
     //پرداخت اضافه‌کاری
     @Column(name = "p_overtime_pay", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Overtime pay must be non-negative")
-    private BigDecimal overtimePay = BigDecimal.ZERO;
+    private BigDecimal overtimePay;
 
     //جریمه تأخیر
     @Column(name = "p_delay_penalty", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Delay penalty must be non-negative")
-    private BigDecimal delayPenalty = BigDecimal.ZERO;
+    private BigDecimal delayPenalty;
 
     //مبلغ بیمه‌ای که از حقوق کم شده
     @Column(name = "p_insurance_withheld", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Insurance withheld must be non-negative")
-    private BigDecimal insuranceWithheld = BigDecimal.ZERO;
+    private BigDecimal insuranceWithheld;
 
     //مبلغ مالیات کم‌شده
     @Column(name = "p_tax_withheld", precision = 15, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Tax withheld must be non-negative")
-    private BigDecimal taxWithheld = BigDecimal.ZERO;
+    private BigDecimal taxWithheld;
 
     //حقوق نهایی
     @Column(name = "p_net_salary", precision = 15, scale = 2, nullable = false)
@@ -88,12 +96,10 @@ public class Payroll extends Base{
     @DecimalMin(value = "0.0", inclusive = true, message = "Net salary must be non-negative")
     private BigDecimal netSalary;
 
-    @Column(name = "p_created_date", nullable = false)
-    @NotNull(message = "Created date must not be null")
+    @Column(name = "p_created_date")
     private LocalDate createdDate;
 
-    @Column(name = "p_last_updated", nullable = false)
-    @NotNull(message = "Last updated date must not be null")
+    @Column(name = "p_last_updated")
     private LocalDate lastUpdated;
 
     public String getFaPayPeriodStart() {
