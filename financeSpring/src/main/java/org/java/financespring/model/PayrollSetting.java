@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 
 @Entity(name = "PayrollSettingEntity")
 @Table(name = "payroll_settings")
-public class PayrollSetting extends Base{
+public class PayrollSetting extends Base {
 
     @Id
     @SequenceGenerator(name = "payrollSettingSeq", sequenceName = "payroll_setting_seq", allocationSize = 1)
@@ -55,11 +55,11 @@ public class PayrollSetting extends Base{
 
     // آیا پاداش‌ها در محاسبه مالیات لحاظ می‌شوند؟
     @Column(name = "p_include_bonuses_in_tax", nullable = false)
-    private boolean includeBonusesInTax = true;
+    private boolean includeBonusesInTax;
 
     // محاسبه خودکار کسورات
     @Column(name = "p_auto_calculate_deductions", nullable = false)
-    private boolean autoCalculateDeductions = true;
+    private boolean autoCalculateDeductions;
 
     // ارز پیش‌فرض، مثلاً "IRR" یا "USD"
     @Column(name = "p_currency", length = 10, nullable = false)
@@ -69,5 +69,5 @@ public class PayrollSetting extends Base{
 
     // تنظیم فعال فعلی
     @Column(name = "p_is_active", nullable = false)
-    private boolean active = true;
+    private boolean active;
 }
