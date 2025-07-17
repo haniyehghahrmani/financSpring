@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import org.java.financespring.dto.EmployeeDTO;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Employee;
+import org.java.financespring.model.pgmodel.Employee;
 import org.java.financespring.service.*;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;

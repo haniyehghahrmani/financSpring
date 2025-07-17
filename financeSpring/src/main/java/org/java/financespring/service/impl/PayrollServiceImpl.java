@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Payroll;
-import org.java.financespring.repository.PayrollRepository;
+import org.java.financespring.model.pgmodel.Payroll;
+import org.java.financespring.repository.pgrepo.PayrollRepository;
 import org.java.financespring.service.PayrollService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

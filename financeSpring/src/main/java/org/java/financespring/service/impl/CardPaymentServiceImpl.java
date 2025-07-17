@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.CardPayment;
-import org.java.financespring.repository.CardPaymentRepository;
+import org.java.financespring.model.pgmodel.CardPayment;
+import org.java.financespring.repository.pgrepo.CardPaymentRepository;
 import org.java.financespring.service.CardPaymentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

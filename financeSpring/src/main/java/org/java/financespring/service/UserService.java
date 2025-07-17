@@ -2,7 +2,7 @@ package org.java.financespring.service;
 
 import org.java.financespring.dto.UserDTO;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.User;
+import org.java.financespring.model.pgmodel.User;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

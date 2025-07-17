@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Permission;
-import org.java.financespring.repository.PermissionRepository;
+import org.java.financespring.model.h2model.Permission;
+import org.java.financespring.repository.h2repo.PermissionRepository;
 import org.java.financespring.service.PermissionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

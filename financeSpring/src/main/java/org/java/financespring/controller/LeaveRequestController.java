@@ -3,7 +3,7 @@ package org.java.financespring.controller;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.LeaveRequest;
+import org.java.financespring.model.pgmodel.LeaveRequest;
 import org.java.financespring.service.LeaveRequestService;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package org.java.financespring.service;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.TransactionStatus;
+import org.java.financespring.model.h2model.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

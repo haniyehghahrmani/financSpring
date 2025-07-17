@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.AccountStatus;
-import org.java.financespring.repository.AccountStatusRepository;
+import org.java.financespring.model.h2model.AccountStatus;
+import org.java.financespring.repository.h2repo.AccountStatusRepository;
 import org.java.financespring.service.AccountStatusService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

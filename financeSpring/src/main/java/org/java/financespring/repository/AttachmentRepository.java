@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface AttachmentRepository extends JpaRepository<Attachment, Long> {
 
-    Optional<org.java.financespring.model.Attachment> findByFileName(String fileName);
+    Optional<Attachment> findByFileName(String fileName);
 
     @Modifying
     @Query("update AttachmentEntity oo set oo.deleted=true where oo.id=:id")

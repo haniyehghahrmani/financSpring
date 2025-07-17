@@ -3,7 +3,7 @@ package org.java.financespring.controller;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Budget;
+import org.java.financespring.model.pgmodel.Budget;
 import org.java.financespring.service.BudgetService;
 import org.java.financespring.service.TransactionService;
 import org.java.financespring.service.UserService;

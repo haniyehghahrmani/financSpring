@@ -2,8 +2,8 @@ package org.java.financespring.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Attendance;
-import org.java.financespring.repository.AttendanceRepository;
+import org.java.financespring.model.pgmodel.Attendance;
+import org.java.financespring.repository.pgrepo.AttendanceRepository;
 import org.java.financespring.service.AttendanceService;
 import org.springframework.stereotype.Service;
 

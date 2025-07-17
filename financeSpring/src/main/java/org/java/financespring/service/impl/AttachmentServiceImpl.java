@@ -5,7 +5,6 @@ import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.Attachment;
 import org.java.financespring.repository.AttachmentRepository;
 import org.java.financespring.service.AttachmentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

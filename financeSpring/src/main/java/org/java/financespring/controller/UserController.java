@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import org.java.financespring.dto.UserDTO;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.User;
+import org.java.financespring.model.pgmodel.User;
 import org.java.financespring.service.PersonService;
 import org.java.financespring.service.RoleService;
 import org.java.financespring.service.UserService;

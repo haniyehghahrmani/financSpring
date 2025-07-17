@@ -1,7 +1,7 @@
 package org.java.financespring.service;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.CardPayment;
+import org.java.financespring.model.pgmodel.CardPayment;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

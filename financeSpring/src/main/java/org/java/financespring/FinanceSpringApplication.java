@@ -1,17 +1,13 @@
 package org.java.financespring;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.java.financespring.model.Permission;
-import org.java.financespring.model.Role;
-import org.java.financespring.model.User;
-import org.java.financespring.service.RoleService;
+import org.java.financespring.model.h2model.Permission;
+import org.java.financespring.model.h2model.Role;
+import org.java.financespring.model.pgmodel.User;
 import org.java.financespring.service.UserService;
-import org.java.financespring.service.impl.UserServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @SpringBootApplication

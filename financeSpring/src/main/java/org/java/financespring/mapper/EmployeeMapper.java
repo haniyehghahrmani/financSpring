@@ -1,7 +1,7 @@
 package org.java.financespring.mapper;
 
 import org.java.financespring.dto.EmployeeDTO;
-import org.java.financespring.model.Employee;
+import org.java.financespring.model.pgmodel.Employee;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

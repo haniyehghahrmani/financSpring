@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.AccountType;
-import org.java.financespring.repository.AccountTypeRepository;
+import org.java.financespring.model.h2model.AccountType;
+import org.java.financespring.repository.h2repo.AccountTypeRepository;
 import org.java.financespring.service.AccountTypeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

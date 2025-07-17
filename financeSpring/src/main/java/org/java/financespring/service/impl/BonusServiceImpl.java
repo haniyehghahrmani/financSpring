@@ -2,8 +2,8 @@ package org.java.financespring.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Bonus;
-import org.java.financespring.repository.BonusRepository;
+import org.java.financespring.model.pgmodel.Bonus;
+import org.java.financespring.repository.pgrepo.BonusRepository;
 import org.java.financespring.service.BonusService;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,9 @@
 package org.java.financespring.controller;
 
-import jakarta.persistence.Cacheable;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Deduction;
+import org.java.financespring.model.pgmodel.Deduction;
 import org.java.financespring.service.DeductionService;
 import org.java.financespring.service.EmployeeService;
 import org.java.financespring.service.PayrollService;

@@ -1,7 +1,7 @@
 package org.java.financespring.service;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Bonus;
+import org.java.financespring.model.pgmodel.Bonus;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

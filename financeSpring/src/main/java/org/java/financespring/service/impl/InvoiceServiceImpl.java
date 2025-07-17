@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Invoice;
-import org.java.financespring.repository.InvoiceRepository;
+import org.java.financespring.model.pgmodel.Invoice;
+import org.java.financespring.repository.pgrepo.InvoiceRepository;
 import org.java.financespring.service.InvoiceService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

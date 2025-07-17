@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.LeaveStatus;
-import org.java.financespring.repository.LeaveStatusRepository;
+import org.java.financespring.model.h2model.LeaveStatus;
+import org.java.financespring.repository.h2repo.LeaveStatusRepository;
 import org.java.financespring.service.LeaveStatusService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

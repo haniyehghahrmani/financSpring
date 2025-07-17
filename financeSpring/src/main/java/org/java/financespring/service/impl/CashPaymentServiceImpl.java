@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.CashPayment;
-import org.java.financespring.repository.CashPaymentRepository;
+import org.java.financespring.model.pgmodel.CashPayment;
+import org.java.financespring.repository.pgrepo.CashPaymentRepository;
 import org.java.financespring.service.CashPaymentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

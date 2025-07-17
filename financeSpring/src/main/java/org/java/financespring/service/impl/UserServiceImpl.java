@@ -2,8 +2,8 @@ package org.java.financespring.service.impl;
 
 import org.java.financespring.dto.UserDTO;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.User;
-import org.java.financespring.repository.UserRepository;
+import org.java.financespring.model.pgmodel.User;
+import org.java.financespring.repository.pgrepo.UserRepository;
 import org.java.financespring.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

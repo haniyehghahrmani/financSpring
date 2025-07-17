@@ -2,8 +2,8 @@ package org.java.financespring.mapper;
 
 import javax.annotation.processing.Generated;
 import org.java.financespring.dto.EmployeeDTO;
-import org.java.financespring.model.Employee;
-import org.java.financespring.model.EmploymentType;
+import org.java.financespring.model.pgmodel.Employee;
+import org.java.financespring.model.h2model.EmploymentType;
 import org.springframework.stereotype.Component;
 
 @Generated(

@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Deduction;
-import org.java.financespring.repository.DeductionRepository;
+import org.java.financespring.model.pgmodel.Deduction;
+import org.java.financespring.repository.pgrepo.DeductionRepository;
 import org.java.financespring.service.DeductionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

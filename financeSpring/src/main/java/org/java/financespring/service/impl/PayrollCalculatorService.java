@@ -1,6 +1,6 @@
 package org.java.financespring.service.impl;
 
-import org.java.financespring.model.*;
+import org.java.financespring.model.pgmodel.*;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
