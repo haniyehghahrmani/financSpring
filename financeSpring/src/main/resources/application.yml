@@ -156,8 +156,13 @@ spring:
       password:
 
     postgres:
-      url: jdbc:postgresql://localhost:5432/main-db
+      url: jdbc:postgresql://localhost:5432/financial
       driver-class-name: org.postgresql.Driver
       username: financial
       password: proj123
 
+
+logging:
+  level:
+    com.zaxxer.hikari: DEBUG
+    org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration: DEBUG

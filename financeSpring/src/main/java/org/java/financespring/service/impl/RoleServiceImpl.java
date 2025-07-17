@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.h2model.Role;
-import org.java.financespring.repository.h2repo.RoleRepository;
+import org.java.financespring.model.pgmodel.Role;
+import org.java.financespring.repository.pgrepo.RoleRepository;
 import org.java.financespring.service.RoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

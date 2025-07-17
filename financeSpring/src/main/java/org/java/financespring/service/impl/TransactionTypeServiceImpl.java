@@ -1,8 +1,8 @@
 package org.java.financespring.service.impl;
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.h2model.TransactionType;
-import org.java.financespring.repository.h2repo.TransactionTypeRepository;
+import org.java.financespring.model.pgmodel.TransactionType;
+import org.java.financespring.repository.pgrepo.TransactionTypeRepository;
 import org.java.financespring.service.TransactionTypeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

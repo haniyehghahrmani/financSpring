@@ -2,8 +2,8 @@ package org.java.financespring.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.h2model.BudgetStatus;
-import org.java.financespring.repository.h2repo.BudgetStatusRepository;
+import org.java.financespring.model.pgmodel.BudgetStatus;
+import org.java.financespring.repository.pgrepo.BudgetStatusRepository;
 import org.java.financespring.service.BudgetStatusService;
 import org.springframework.stereotype.Service;
 

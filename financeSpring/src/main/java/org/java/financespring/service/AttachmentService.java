@@ -2,7 +2,7 @@ package org.java.financespring.service;
 
 
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Attachment;
+import org.java.financespring.model.pgmodel.Attachment;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 

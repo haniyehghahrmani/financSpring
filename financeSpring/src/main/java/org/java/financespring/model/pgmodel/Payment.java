@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.java.financespring.model.h2model.Base;
 
 import java.math.BigDecimal;
 import java.util.Date;

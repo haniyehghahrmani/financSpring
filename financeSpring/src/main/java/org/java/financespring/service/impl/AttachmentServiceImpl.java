@@ -2,8 +2,8 @@ package org.java.financespring.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Attachment;
-import org.java.financespring.repository.AttachmentRepository;
+import org.java.financespring.model.pgmodel.Attachment;
+import org.java.financespring.repository.pgrepo.AttachmentRepository;
 import org.java.financespring.service.AttachmentService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

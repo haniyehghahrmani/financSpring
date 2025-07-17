@@ -11,8 +11,11 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import com.zaxxer.hikari.HikariDataSource;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
@@ -27,16 +30,25 @@ public class H2Config {
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.h2")
     public DataSource h2DataSource() {
-        return DataSourceBuilder.create().build();
+        return DataSourceBuilder.create()
+                .driverClassName("org.h2.Driver")
+                .url("jdbc:h2:mem:h2db")
+                .username("sa")
+                .password("")
+                .build();
     }
 
     @Bean
     @Primary
     public LocalContainerEntityManagerFactoryBean h2EntityManager(EntityManagerFactoryBuilder builder) {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        properties.put("hibernate.hbm2ddl.auto", "update");
         return builder
                 .dataSource(h2DataSource())
                 .packages("org.java.financespring.model.h2Model")
                 .persistenceUnit("h2")
+                .properties(properties)
                 .build();
     }
 

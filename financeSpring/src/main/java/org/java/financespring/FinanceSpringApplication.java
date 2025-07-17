@@ -1,8 +1,8 @@
 package org.java.financespring;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.java.financespring.model.h2model.Permission;
-import org.java.financespring.model.h2model.Role;
+import org.java.financespring.model.pgmodel.Permission;
+import org.java.financespring.model.pgmodel.Role;
 import org.java.financespring.model.pgmodel.User;
 import org.java.financespring.service.UserService;
 import org.springframework.boot.SpringApplication;

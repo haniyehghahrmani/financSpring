@@ -1,0 +1,36 @@
+package org.java.financespring.model.pgmodel;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+
+@Entity(name = "TransactionStatusEntity")
+@Table(name = "transaction_statuses")
+@Cacheable
+public class TransactionStatus extends Base {
+
+    @Id
+    @SequenceGenerator(name = "transactionStatusSeq", sequenceName = "transaction_status_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionStatusSeq")
+    @Column(name = "t_id")
+    private Long id;
+
+    @Column(name = "t_name", length = 200, nullable = false)
+    @NotBlank(message = "Transaction Status name should not be blank")
+    @Size(min = 3, max = 200, message = "Transaction Status name must be between 3 and 200 characters")
+    private String name;
+
+    @Column(name = "t_is_active")
+    private Boolean isActive = true;
+}

@@ -8,9 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.java.financespring.model.h2model.Base;
-import org.java.financespring.model.h2model.FinancialDocumentStatus;
-import org.java.financespring.model.h2model.FinancialDocumentType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

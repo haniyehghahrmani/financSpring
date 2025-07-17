@@ -2,7 +2,7 @@ package org.java.financespring.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.Attachment;
+import org.java.financespring.model.pgmodel.Attachment;
 import org.java.financespring.service.impl.AttachmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

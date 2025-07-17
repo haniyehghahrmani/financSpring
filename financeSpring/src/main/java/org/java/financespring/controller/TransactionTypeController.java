@@ -3,7 +3,7 @@ package org.java.financespring.controller;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import org.java.financespring.exception.NoContentException;
-import org.java.financespring.model.h2model.TransactionType;
+import org.java.financespring.model.pgmodel.TransactionType;
 import org.java.financespring.service.TransactionTypeService;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
