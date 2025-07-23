@@ -54,7 +54,7 @@ public class Person extends Base {
     @Transient
     private String faBirthdate;
 
-    @Column(name = "p_phoneNumber", length = 11, unique = true)
+    @Column(name = "p_phonenumber", length = 11, unique = true)
     @Pattern(regexp = "^[0-9]{1,11}$", message = "Invalid phoneNumber")
     @Size(min = 1, max = 11, message = " phoneNumber must be between 1 and 11 characters")
     @NotBlank(message = "Should Not Be Null")
