@@ -1,5 +1,6 @@
 package org.java.financespring.service.impl;
 
+import org.java.financespring.annotations.SensitiveLog;
 import org.java.financespring.exception.NoContentException;
 import org.java.financespring.model.pgmodel.Permission;
 import org.java.financespring.repository.pgrepo.PermissionRepository;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@SensitiveLog
 @Service
 public class PermissionServiceImpl implements PermissionService {
     

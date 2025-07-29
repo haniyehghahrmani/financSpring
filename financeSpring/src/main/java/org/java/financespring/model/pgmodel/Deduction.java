@@ -76,7 +76,7 @@ public class Deduction extends Base {
     private boolean recurring;
 
     public String getFaDeductionDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(deductionDate)));
+        return String.valueOf(PersianDate.fromGregorian(deductionDate));
     }
 
     public void setFaDeductionDate(String faDeductionDate) {

@@ -99,7 +99,7 @@ public class Transaction extends Base {
     }
 
     public String getFaTransactionDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(transactionDate)));
+        return String.valueOf(PersianDate.fromGregorian(transactionDate));
     }
 
     public void setFaCreateDate(String faTransactionDate) {

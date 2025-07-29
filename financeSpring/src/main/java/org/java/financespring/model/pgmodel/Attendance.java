@@ -79,7 +79,7 @@ public class Attendance extends Base {
     private String note;
 
     public String getFaDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(date)));
+        return String.valueOf(PersianDate.fromGregorian(date));
     }
 
     public void setFaDate(String faDate) {

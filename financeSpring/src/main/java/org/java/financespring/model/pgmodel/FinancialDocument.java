@@ -105,7 +105,7 @@ public class FinancialDocument extends Base {
     }
 
     public String getFaDocumentDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(documentDate)));
+        return String.valueOf(PersianDate.fromGregorian(documentDate));
     }
 
     public void setFaDocumentDate(String faDocumentDate) {

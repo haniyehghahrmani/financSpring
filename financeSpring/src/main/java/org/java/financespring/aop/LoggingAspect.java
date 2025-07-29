@@ -16,6 +16,8 @@ public class LoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
+    //@annotation: Method has @SensitiveLog
+    //@within:Class has @SensitiveLog
     @Around("@annotation(org.java.financespring.annotations.SensitiveLog) || " +
             "@within(org.java.financespring.annotations.SensitiveLog)")
     public Object logSensitiveMethods(ProceedingJoinPoint joinPoint) throws Throwable {

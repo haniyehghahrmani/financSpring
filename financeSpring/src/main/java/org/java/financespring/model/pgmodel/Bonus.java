@@ -76,7 +76,7 @@ public class Bonus extends Base {
     private boolean taxable;
 
     public String getFaGrantedDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(grantedDate)));
+        return String.valueOf(PersianDate.fromGregorian(grantedDate));
     }
 
     public void setFaGrantedDate(String faGrantedDate) {

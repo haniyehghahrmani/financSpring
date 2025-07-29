@@ -102,7 +102,7 @@ public class Account extends Base {
     }
 
     public String getFaOpeningDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(openingDate)));
+        return String.valueOf(PersianDate.fromGregorian(openingDate));
     }
 
     public void setFaOpeningDate(String faOpeningDate) {

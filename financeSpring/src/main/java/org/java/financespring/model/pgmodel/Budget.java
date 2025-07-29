@@ -121,7 +121,7 @@ public class Budget extends Base {
     }
 
     public String getFaStartDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(startDate)));
+        return String.valueOf(PersianDate.fromGregorian(startDate));
     }
 
     public void setFaStartDate(String faStartDate) {
@@ -129,7 +129,7 @@ public class Budget extends Base {
     }
 
     public String getFaEndDate() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(endDate)));
+        return String.valueOf(PersianDate.fromGregorian(endDate));
     }
 
     public void setFaEndDate(String faEndDate) {

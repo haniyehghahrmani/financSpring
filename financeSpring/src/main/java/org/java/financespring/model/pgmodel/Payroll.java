@@ -103,7 +103,7 @@ public class Payroll extends Base {
     private LocalDate lastUpdated;
 
     public String getFaPayPeriodStart() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(payPeriodStart)));
+        return String.valueOf(PersianDate.fromGregorian(payPeriodStart));
     }
 
     public void setFaPayPeriodStart(String faPayPeriodStart) {
@@ -111,7 +111,7 @@ public class Payroll extends Base {
     }
 
     public String getFaPayPeriodEnd() {
-        return String.valueOf(PersianDate.fromGregorian(LocalDate.from(payPeriodEnd)));
+        return String.valueOf(PersianDate.fromGregorian(payPeriodEnd));
     }
 
     public void setFaPayPeriodEnd(String faPayPeriodEnd) {

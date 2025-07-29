@@ -25,7 +25,7 @@ public class InvoiceItemServiceImpl implements InvoiceItemService {
 
     @Override
     public InvoiceItem edit(Long id, InvoiceItem invoiceItem) throws NoContentException {
-        InvoiceItem existingInvoiceItem = (InvoiceItem) repository.findById(id)
+        InvoiceItem existingInvoiceItem = repository.findById(id)
                 .orElseThrow(
                         () -> new NoContentException("No Active InvoiceItem Was Found with id " + id + " To Update!")
                 );
