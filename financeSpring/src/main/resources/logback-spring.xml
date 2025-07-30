@@ -29,7 +29,7 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
 
-        <producerConfig>bootstrap.servers=kafka:9092,key.serializer=org.apache.kafka.common.serialization.StringSerializer,value.serializer=org.apache.kafka.common.serialization.StringSerializer</producerConfig>
+        <producerConfig>bootstrap.servers=localhost:9092,key.serializer=org.apache.kafka.common.serialization.StringSerializer,value.serializer=org.apache.kafka.common.serialization.StringSerializer</producerConfig>
     </appender>
 
     <!-- Logger اختصاصی پکیج -->

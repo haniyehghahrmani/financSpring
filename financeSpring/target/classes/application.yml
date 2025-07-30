@@ -167,7 +167,7 @@ logging:
     org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration: DEBUG
 
 kafka:
-  bootstrap-servers: kafka:9092
+  bootstrap-servers: localhost:9092
   consumer:
     group-id: test-group
     auto-offset-reset: earliest

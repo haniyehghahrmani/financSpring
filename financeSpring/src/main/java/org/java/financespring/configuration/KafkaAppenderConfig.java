@@ -19,7 +19,7 @@ public class KafkaAppenderConfig {
         appender.setContext(context);
         appender.setTopic("logs-topic");
 
-        appender.addProducerConfigValue("bootstrap.servers", "kafka:9092");
+        appender.addProducerConfigValue("bootstrap.servers", "localhost:9092");
         appender.setEncoder(new LogstashEncoder());
 
         return appender;
