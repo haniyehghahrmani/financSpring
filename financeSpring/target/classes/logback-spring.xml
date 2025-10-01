@@ -21,7 +21,6 @@
         </encoder>
     </appender>
 
-    <!-- اگر Kafka آماده باشه، اینو فعال کن -->
     <appender name="KAFKA" class="com.github.danielwegener.logback.kafka.KafkaAppender">
         <topic>logs-topic</topic>
 
@@ -32,14 +31,12 @@
         <producerConfig>bootstrap.servers=localhost:9092,key.serializer=org.apache.kafka.common.serialization.StringSerializer,value.serializer=org.apache.kafka.common.serialization.StringSerializer</producerConfig>
     </appender>
 
-    <!-- Logger اختصاصی پکیج -->
     <logger name="org.java.financespring" level="DEBUG" additivity="false">
         <appender-ref ref="FILE"/>
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="KAFKA"/>
     </logger>
 
-    <!-- فقط یک root داشته باش -->
     <root level="INFO">
         <appender-ref ref="FILE"/>
         <appender-ref ref="CONSOLE"/>
