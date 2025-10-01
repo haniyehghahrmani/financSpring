@@ -146,7 +146,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 
   datasource:
     h2:
@@ -161,18 +161,7 @@ spring:
       username: financial
       password: proj123
 
-logging:
-  level:
-    com.zaxxer.hikari: DEBUG
-    org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration: DEBUG
-
-kafka:
-  bootstrap-servers: localhost:9092
-  consumer:
-    group-id: test-group
-    auto-offset-reset: earliest
-    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-  producer:
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer
-    value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#logging:
+#  level:
+#    com.zaxxer.hikari: DEBUG
+#    org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration: DEBUG

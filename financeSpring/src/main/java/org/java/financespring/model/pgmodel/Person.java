@@ -19,7 +19,7 @@ import java.time.LocalDate;
 @SuperBuilder
 
 @Entity(name = "PersonEntity")
-@Table(name = "Persons")
+@Table(name = "persons")
 public class Person extends Base {
 
     @Id
